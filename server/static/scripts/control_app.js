@@ -273,4 +273,13 @@ timeoutB.addEventListener("change", () => {
     socket.emit("updateTimeoutsVAL", [ newTimeoutA, newTimeoutB ]);
 })
 
+const mapNum = document.querySelectorAll('input[name="val_mapPlayed"]'); // send which map is being played
+                                                                             // would like to update at some point to have it show that the map has *been* played, its score, and who picked the map
+
+mapNum.forEach(radioButton => {
+    radioButton.addEventListener('change', () => {
+        const mapValue = document.querySelector('input[name="val_mapPlayed"]:checked').value;
+        socket.emit("mapProgress", mapValue);
+    })
+})
 

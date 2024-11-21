@@ -2,6 +2,8 @@ const socket = io('ws://localhost:5500');
 let flipped = false;
 let timeoutsLeftA = "2";
 let timeoutsLeftB = "2";
+let currentMapNum = "1";
+let currentFormat = "0";
 
 socket.on("activeGame", (arg) => {
     if (arg == "valorant"){
@@ -160,6 +162,109 @@ socket.on("activeGame", (arg) => {
             
                                     document.getElementById("rTimeout1").style.fillOpacity = 0;
                                     document.getElementById("rTimeout2").style.fillOpacity = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+
+        socket.on("formatReturn", (arg) => { //listen for formats to show/hide the map display
+            if (arg == 0){
+                currentFormat = 0;
+                document.getElementById("BO3mapDisplay").style.fillOpacity = 0;
+                document.getElementById("BO5mapDisplay").style.fillOpacity = 0;
+            }
+            else{
+                if (arg == 1){
+                    currentFormat = 1;
+                    document.getElementById("BO3mapDisplay").style.fillOpacity = 1;
+                    document.getElementById("BO5mapDisplay").style.fillOpacity = 0;
+                }
+                else{
+                    if (arg == 2){
+                        currentFormat = 2;
+                        document.getElementById("BO3mapDisplay").style.fillOpacity = 0;
+                        document.getElementById("BO5mapDisplay").style.fillOpacity = 1;
+                    }
+                }
+            }
+        })
+
+        socket.on("mapReturn", (arg) => {
+            if (currentFormat == 0){
+                document.getElementById("BO3mapDisplay").style.fillOpacity = 0;
+                document.getElementById("BO5mapDisplay").style.fillOpacity = 0;
+            }
+            else {
+                if (currentFormat == 1){
+                    document.getElementById("BO3mapDisplay").style.fillOpacity = 1;
+                    document.getElementById("BO5mapDisplay").style.fillOpacity = 0;
+                    if (arg == 1){
+                        document.getElementById("map1of3").style.fill = "#222222";
+                        document.getElementById("map2of3").style.fill = "#999999";
+                        document.getElementById("map3of3").style.fill = "#999999";
+                    }
+                    else{
+                        if (arg == 2){
+                            document.getElementById("map1of3").style.fill = "#999999";
+                            document.getElementById("map2of3").style.fill = "#222222";
+                            document.getElementById("map3of3").style.fill = "#999999";
+                        }
+                        else{
+                            if (arg == 3){
+                                    document.getElementById("map1of3").style.fill = "#999999";
+                                    document.getElementById("map2of3").style.fill = "#999999";
+                                    document.getElementById("map3of3").style.fill = "#222222";
+                            }
+                        }
+                    }
+                }
+                else {
+                    if (currentFormat == 2){
+                        document.getElementById("BO3mapDisplay").style.fillOpacity = 0;
+                        document.getElementById("BO5mapDisplay").style.fillOpacity = 1;
+                    if (arg == 1){
+                        document.getElementById("map1of5").style.fill = "#222222";
+                        document.getElementById("map2of5").style.fill = "#999999";
+                        document.getElementById("map3of5").style.fill = "#999999";
+                        document.getElementById("map4of5").style.fill = "#999999";
+                        document.getElementById("map5of5").style.fill = "#999999";
+                    }
+                    else{
+                        if (arg == 2){
+                            document.getElementById("map1of5").style.fill = "#999999";
+                            document.getElementById("map2of5").style.fill = "#222222";
+                            document.getElementById("map3of5").style.fill = "#999999";
+                            document.getElementById("map4of5").style.fill = "#999999";
+                            document.getElementById("map5of5").style.fill = "#999999";
+                        }
+                        else{
+                            if (arg == 3){
+                                    document.getElementById("map1of5").style.fill = "#999999";
+                                    document.getElementById("map2of5").style.fill = "#999999";
+                                    document.getElementById("map3of5").style.fill = "#222222";
+                                    document.getElementById("map4of5").style.fill = "#999999";
+                                    document.getElementById("map5of5").style.fill = "#999999";
+                                }
+                                else {
+                                    if (arg == 4){
+                                    document.getElementById("map1of5").style.fill = "#999999";
+                                    document.getElementById("map2of5").style.fill = "#999999";
+                                    document.getElementById("map3of5").style.fill = "#999999";
+                                    document.getElementById("map4of5").style.fill = "#222222";
+                                    document.getElementById("map5of5").style.fill = "#999999"; 
+                                    }
+                                    else {
+                                        if (arg == 5){
+                                            document.getElementById("map1of5").style.fill = "#999999";
+                                            document.getElementById("map2of5").style.fill = "#999999";
+                                            document.getElementById("map3of5").style.fill = "#999999";
+                                            document.getElementById("map4of5").style.fill = "#999999";
+                                            document.getElementById("map5of5").style.fill = "#222222";
+                                        }
+                                    }
                                 }
                             }
                         }

@@ -33,8 +33,9 @@ let rWins = [0,0];
 let rLosses = [0,0];
 let flipped = false;
 let gameSelected = "none";
-let bestOf = 0 // 0 = none, 1 = BO3, 2 = B05
+let bestOf = 0; // 0 = none, 1 = BO3, 2 = B05
 let timeoutsLeft = [2,2]; // A = [0] and B = [1]
+let currentMapNum = 1;
 
 // listen for connects and disconnects
 io.on('connection', socket => {
@@ -47,6 +48,7 @@ io.on('connection', socket => {
     io.emit("activeGame", gameSelected);
     io.emit("formatReturn", bestOf);
     io.emit("returnTimeoutsVAL", timeoutsLeft);
+    io.emit("mapReturn", currentMapNum);
 
     //listen for team information updates
     socket.on("updateInfoA", (args) => {
@@ -120,6 +122,7 @@ io.on('connection', socket => {
         io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors]);
         io.emit("formatReturn", bestOf);
         io.emit("returnTimeoutsVAL", timeoutsLeft);
+        io.emit("mapReturn", currentMapNum);
     })
 
     //listen for best of format
@@ -141,12 +144,18 @@ io.on('connection', socket => {
 
     //listen for map selection (VALORANT)
 
+    //
+    socket.on("mapProgress", (arg) => {
+        currentMapNum = arg;
+        console.log("Map Number = " + currentMapNum)
+        io.emit("mapReturn", currentMapNum);
+    })
+
     //listen for timeouts (VALORANT)
     socket.on("updateTimeoutsVAL", (args) =>{
-        const inp_timeoutsA = args[0]
-        const inp_timeoutsB = args[1]
-        timeoutsLeft.splice(0, 1, inp_timeoutsA);
-        timeoutsLeft.splice(1, 1, inp_timeoutsB);
+        timeoutsLeft[0] = args[0];
+        timeoutsLeft[1] = args[1];
+        console.log(timeoutsLeft);
         io.emit("returnTimeoutsVAL", timeoutsLeft);
     })
 })
