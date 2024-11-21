@@ -1,0 +1,63 @@
+*{
+    font-family: "Exo 2";
+    font-size: large;
+}
+
+fieldset{
+    border-radius:15px;
+}
+legend{
+    text-align: center;
+}
+
+h2{
+    font-size: 3em;
+}
+
+td{
+    text-align: start;
+}
+
+/* classes */
+.headContainer{
+    display: block;
+    text-align: center;
+}
+.scoreBtn{
+    border-radius: 5px;
+}
+.winLossBox{
+    display: block;
+}
+.middleBtns{
+    margin: 10% 0;
+}
+
+
+/* ids */
+#teamInfoForm, #scoreControl{
+    display: inline-flex;
+    text-align: center;
+    width: 60%;
+    margin: 0 20%;
+}
+#infoTeamA, #infoTeamB{
+    display: inline-block;
+    text-align: start;
+}
+
+#scoreCtrlA, #scoreCtrlB{
+    display: inline-block;
+    width: 60%;
+}
+
+#gameSelect, #valorantControl, #overwatchControl{
+    text-align: center;
+    width: 60%;
+    margin: 0 20%;
+}
+
+#valItemsA, #valItemsB{
+    display: inline-block;
+    margin: 0 50px;
+}

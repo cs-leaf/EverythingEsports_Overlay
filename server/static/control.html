@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htmVAL Control Page</title>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script defer src="./scripts/control_app.js"></script>
+    <link rel="stylesheet" href="./stylesheets/control_styles.css">
+    <!-- import google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="headContainer">
+        <h1>htmVAL Controls</h1>
+    </div>
+    <div id="teamInfoForm">
+        <fieldset id="infoTeamA"> <!-- Information and data for Team A -->
+        <legend><strong>Team A Information</strong></legend>
+            <table>
+                <tr>
+                    <td>
+                        <label for="nameA">Team Name:</label> <!-- get team A's name/tag -->
+                        <input name="nameA" id="nameA" type="text" placeholder="SEN" maxlength="5">
+                    </td>
+                    <td>
+                        <label for="pcolA">Primary Color:</label> <!-- get team A's colors -->
+                        <input name="pcolA" id="pcolA" type="color">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="logoA">Logo URL:</label> <!-- get team A's logo -->
+                        <input name="logoA" id="logoA" type="text" placeholder="Paste image URL here...">
+                    </td>
+                    
+                    <td>
+                        <label for="scolA">Secondary Color:</label>
+                        <input name="scolA" id="scolA" type="color">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="recordA">Record:</label>
+                        <input type="number" class="winLossBox" id="winsA" placeholder="Wins" min="0">
+                        <input type="number" class="winLossBox" id="lossesA" placeholder="Losses" min="0">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset id="infoTeamB"> <!-- Information and data for Team B -->
+        <legend><strong>Team B Information</strong></legend>
+            <table>
+                <tr>
+                    <td>
+                        <label for="nameB">Team Name:</label> <!-- get team B's name/tag -->
+                        <input name="nameB" id="nameB" type="text" placeholder="C9" maxlength="5">
+                    </td>
+                    <td>
+                        <label for="pcolB">Primary Color:</label> <!-- get team B's colors -->
+                        <input name="pcolB" id="pcolB" type="color">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="logoB">Logo URL:</label> <!-- get team B's logo -->
+                        <input name="logoB" id="logoB" type="text" placeholder="Paste image URL here...">
+                    </td>
+                    <td>
+                        <label for="scolB">Secondary Color:</label>
+                        <input name="scolB" id="scolB" type="color">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="recordB">Record:</label>
+                        <input type="number" class="winLossBox" id="winsB" placeholder="Wins" min="0">
+                        <input type="number" class="winLossBox" id="lossesB" placeholder="Losses" min="0">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+
+    <div id="scoreControl"> 
+        <fieldset id="scoreCtrlA"> <!-- Controls for team B's score -->
+        <legend id="scoreLabelA"><strong>Team A Score</strong></legend>
+        <h2 id="mapScoreA">0</h2>
+            <button id="scoreIncA" class="scoreBtn" onclick="incScoreA()">+1</button>
+            <button id="scoreResetA" class="scoreBtn" onclick="resetA()">Reset Score</button>
+            <button id="scoreDecA" class="scoreBtn" onclick="decScoreA()">-1</button>
+        </fieldset>
+
+        <div class="middleBtns">
+            <button id="flipScore" class="scoreBtn" onclick="flipScores()"> Flip Scoreboard </button>
+            <button id="resetAllScores" class="scoreBtn" onclick="resetScores()">Reset All Scores</button>
+        </div>
+
+        <fieldset id="scoreCtrlB"> <!-- Controls for team B's score -->
+            <legend id="scoreLabelB"><strong>Team B Score</strong></legend>
+                <h2 id="mapScoreB">0</h2>
+                <button id="scoreIncB" class="scoreBtn" onclick="incScoreB()">+1</button>
+                <button id="scoreResetB" class="scoreBtn" onclick="resetB()">Reset Score</button>
+                <button id="scoreDecB" class="scoreBtn" onclick="decScoreB()">-1</button>
+        </fieldset>
+    </div>
+
+    <div id="gameSelect">
+        <fieldset>
+        <legend>Game</legend>
+            <input type="radio" name="gameChoice" id="gameVAL" value="valorant">
+            <label for="gameVAL">VALORANT</label>
+
+            <input type="radio" name="gameChoice" id="gameOW2" value="overwatch2">
+            <label for="gameOW2">Overwatch 2</label>
+
+            <input type="radio" name="gameChoice" id="gameNone" value="none" checked>
+            <label for="gameOW2">None</label>
+        </fieldset>
+    </div>
+
+    <div id="valorantControl">
+        <fieldset>
+        <legend>VALORANT CONTROLS</legend>
+            <div id="valItemsA">
+                <h3>Team A</h3>
+                <label for="timeoutsLeftA">Timeouts Left:</label>
+                <input type="number" name="timeoutsLeftA" id="timeoutsLeftA" max="2" min="0" value="2">
+            </div>
+            <div id="valItemsB">
+                <h3>Team B</h3>
+                <label for="timeoutsLeftA">Timeouts Left:</label>
+                <input type="number" name="timeoutsLeftB" id="timeoutsLeftB" max="2" min="0" value="2">
+            </div>
+            <div id="valMaps">
+                <h3>Maps</h3>
+                <div id="bestOfSelect"> <!-- select which applies for map select -->
+                    <label for="valBO3">Best of 3</label> 
+                    <input type="radio" name="valBestOf" id="valBO3" value="bestOf3"><br>
+                    <label for="valBO5">Best of 5</label>
+                    <input type="radio" name="valBestOf" id="valBO5" value="bestOf5"><br>
+                    <label for="valBO5">None/Unknown</label> 
+                    <input type="radio" name="valBestOf" id="valNone" value="none" checked>
+                </div>
+                <div id="mapsValBO3">
+                    <input type="checkbox" name="valBO3_map1Played">
+                    <label for="valBO3_map1">Map 1:</label>
+                    <select name="valBO3_map1" id="valBO3_map1">
+                        <option value="abyss">Abyss</option>
+                        <option value="ascent">Ascent</option>
+                        <option value="bind">Bind</option>
+                        <option value="breeze">Breeze</option>
+                        <option value="fracture">Fracture</option>
+                        <option value="haven">Haven</option>
+                        <option value="icebox">Icebox</option>
+                        <option value="lotus">Lotus</option>
+                        <option value="pearl">Pearl</option>
+                        <option value="split">Split</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+
+                    <input type="checkbox" name="valBO3_map2Played">
+                    <label for="valBO3_map2">Map 2:</label>
+                    <select name="valBO3_map2" id="valBO3_map2">
+                        <option value="abyss">Abyss</option>
+                        <option value="ascent">Ascent</option>
+                        <option value="bind">Bind</option>
+                        <option value="breeze">Breeze</option>
+                        <option value="fracture">Fracture</option>
+                        <option value="haven">Haven</option>
+                        <option value="icebox">Icebox</option>
+                        <option value="lotus">Lotus</option>
+                        <option value="pearl">Pearl</option>
+                        <option value="split">Split</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+                    
+                    <input type="checkbox" name="valBO3_map3Played">
+                    <label for="valBO3_map3">Map 3:</label>
+                    <select name="valBO3_map3" id="valBO3_map3">
+                        <option value="abyss">Abyss</option>
+                        <option value="ascent">Ascent</option>
+                        <option value="bind">Bind</option>
+                        <option value="breeze">Breeze</option>
+                        <option value="fracture">Fracture</option>
+                        <option value="haven">Haven</option>
+                        <option value="icebox">Icebox</option>
+                        <option value="lotus">Lotus</option>
+                        <option value="pearl">Pearl</option>
+                        <option value="split">Split</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+                </div>
+                <div id="mapsValBO5">
+                    <input type="checkbox" name="valBO5_map1Played">
+                    <label for="valBO5_map1">Map 1:</label>
+                    <select name="valBO5_map1" id="valBO5_map1">
+                        <option value="abyss">Abyss</option>
+                        <option value="ascent">Ascent</option>
+                        <option value="bind">Bind</option>
+                        <option value="breeze">Breeze</option>
+                        <option value="fracture">Fracture</option>
+                        <option value="haven">Haven</option>
+                        <option value="icebox">Icebox</option>
+                        <option value="lotus">Lotus</option>
+                        <option value="pearl">Pearl</option>
+                        <option value="split">Split</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+
+                    <input type="checkbox" name="valBO5_map2Played">
+                    <label for="valBO5_map2">Map 2:</label>
+                    <select name="valBO5_map2" id="valBO5_map2">
+                        <option value="abyss">Abyss</option>
+                        <option value="ascent">Ascent</option>
+                        <option value="bind">Bind</option>
+                        <option value="breeze">Breeze</option>
+                        <option value="fracture">Fracture</option>
+                        <option value="haven">Haven</option>
+                        <option value="icebox">Icebox</option>
+                        <option value="lotus">Lotus</option>
+                        <option value="pearl">Pearl</option>
+                        <option value="split">Split</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+
+                    <input type="checkbox" name="valBO5_map3Played">
+                    <label for="valBO5_map3">Map 3:</label>
+                    <select name="valBO5_map3" id="valBO5_map3">
+                        <option value="abyss">Abyss</option>
+                        <option value="ascent">Ascent</option>
+                        <option value="bind">Bind</option>
+                        <option value="breeze">Breeze</option>
+                        <option value="fracture">Fracture</option>
+                        <option value="haven">Haven</option>
+                        <option value="icebox">Icebox</option>
+                        <option value="lotus">Lotus</option>
+                        <option value="pearl">Pearl</option>
+                        <option value="split">Split</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+
+                    <input type="checkbox" name="valBO5_map4Played">
+                    <label for="valBO5_map4">Map 4:</label>
+                    <select name="valBO5_map4" id="valBO5_map4">
+                        <option value="abyss">Abyss</option>
+                        <option value="ascent">Ascent</option>
+                        <option value="bind">Bind</option>
+                        <option value="breeze">Breeze</option>
+                        <option value="fracture">Fracture</option>
+                        <option value="haven">Haven</option>
+                        <option value="icebox">Icebox</option>
+                        <option value="lotus">Lotus</option>
+                        <option value="pearl">Pearl</option>
+                        <option value="split">Split</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+
+                    <input type="checkbox" name="valBO5_map5Played">
+                    <label for="valBO5_map5">Map 5:</label>
+                    <select name="valBO5_map5" id="valBO5_map5">
+                        <option value="abyss">Abyss</option>
+                        <option value="ascent">Ascent</option>
+                        <option value="bind">Bind</option>
+                        <option value="breeze">Breeze</option>
+                        <option value="fracture">Fracture</option>
+                        <option value="haven">Haven</option>
+                        <option value="icebox">Icebox</option>
+                        <option value="lotus">Lotus</option>
+                        <option value="pearl">Pearl</option>
+                        <option value="split">Split</option>
+                        <option value="sunset">Sunset</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="overwatchControl">
+        <fieldset>
+        <legend>OVERWATCH 2 CONTROLS</legend>
+                
+        </fieldset>
+    </div>
+</body>
+</html>

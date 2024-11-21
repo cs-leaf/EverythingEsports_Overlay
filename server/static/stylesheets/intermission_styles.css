@@ -1,0 +1,72 @@
+@import url("https://use.typekit.net/sso3kkk.css");
+
+*{
+    color: rgb(255, 255, 255);
+    font-family: "address-sans-pro", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+
+body{
+    background-image: url(../assets/intermission_assets/Intermission1920x1080.png);
+    background-size: 1920px 1080px;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+img{
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: scale-down;
+    align-content: center;
+}
+
+div > p{
+    display: inline-block;
+    font-size: xx-large;
+    margin: 0;
+}
+
+p{
+    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+}
+h1,h2,h3{
+    text-shadow: -5px -5px 0 #000, 5px -5px 0 #000, -5px 5px 0 #000, 5px 5px 0 #000;
+}
+
+/* ids */
+#intermissionInfo{
+    margin: 80px 20px;
+}
+
+#intNameA, #intNameB{
+    display: block;
+    margin-top: 5px;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+
+/* classes */
+.intScoreDisp{
+    display: inline-block;
+    margin: 25px;
+}
+.recordDivA, .recordDivB{
+    display: flex;
+    margin-top: 0;
+    justify-content: center;
+}
+
+.scoreDiv{
+    display: inline-flex;
+    margin: -20px 25px;
+
+    width: 70px;
+
+    font-size: 4.2em;
+    justify-content: center;
+    vertical-align: top;
+}

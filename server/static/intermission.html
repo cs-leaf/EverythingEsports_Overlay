@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htmVAL Intermission Screen</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"
+        integrity="sha512-Xm9qbB6Pu06k3PUwPj785dyTl6oHxgsv9nHp7ej7nCpAqGZT3OZpsELuCYX05DdonFpTlBpXMOxjavIAIUwr0w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="./scripts/intermission_app.js"></script>
+    <link rel="stylesheet" href="./stylesheets/intermission_styles.css">
+</head>
+<body>
+    <div id="intermissionInfo">
+        <div id="intTeamA" class="intScoreDisp">
+            <img class="logos" id="logoA" src="https://placehold.co/400" alt="team A's logo">
+            <p id="intNameA">NameA</p>
+            <div class="recordDivA">
+                <p class="wins" id="winsA">0</p>
+                <p>-</p>
+                <p class="losses" id="lossesA">0</p>
+            </div>
+        </div>
+
+        <div class="scoreDiv">
+            <h2 id="mapScoreA">0</h2>
+        </div>
+
+        <div class="scoreDiv">
+            <h2>-</h2>
+        </div>
+
+        <div class="scoreDiv">
+            <h2 id="mapScoreB">0</h2>
+        </div>
+
+        <div id="intTeamB" class="intScoreDisp">
+            <img class="logos" id="logoB" src="https://placehold.co/400" alt="team B's logo">
+            <p id="intNameB">NameB</p>
+            <div class="recordDivB">
+                <p id="winsB">0</p>
+                <p>-</p>
+                <p id="lossesB">0</p>                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
