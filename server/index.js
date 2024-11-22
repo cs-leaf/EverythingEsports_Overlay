@@ -36,6 +36,7 @@ let gameSelected = "none";
 let bestOf = 0; // 0 = none, 1 = BO3, 2 = B05
 let timeoutsLeft = [2,2]; // A = [0] and B = [1]
 let currentMapNum = 1;
+let mapPool = ["abyss", "abyss", "abyss", "abyss", "abyss",];
 
 // listen for connects and disconnects
 io.on('connection', socket => {
@@ -139,10 +140,24 @@ io.on('connection', socket => {
                 }
             }
         }
+        mapPool[0] = "no_sel"
+        mapPool[1] = "no_sel"
+        mapPool[2] = "no_sel"
+        mapPool[3] = "no_sel"
+        mapPool[4] = "no_sel"
         io.emit("formatReturn", bestOf);
     })
 
     //listen for map selection (VALORANT)
+    socket.on("mapSelection", (args) => {
+        mapPool[0] = args[0];
+        mapPool[1] = args[1];
+        mapPool[2] = args[2];
+        mapPool[3] = args[3];
+        mapPool[4] = args[4];
+        console.log(mapPool);
+        io.emit("mapSelReturn", mapPool);
+    })
 
     //
     socket.on("mapProgress", (arg) => {

@@ -6,7 +6,7 @@
 body{
     margin: 0;
     /* placeholder bg */
-    background-image: url(../assets/other_assets/val_scorebug/Fade\ A\ post\ for\ tree.png);
+    background-image: none;
     background-repeat: no-repeat;
 }
 .svgContainer{
@@ -69,5 +69,23 @@ text{
     left: 0;
 }
 #map1of3,#map2of3,#map3of3{
+    fill: #999999;
+}
+
+#mapNames{
+    position: absolute;
+    z-index: 5;
+    top: -19px;
+    left: 20px;
+
+    display: inline-flex;
+    color: white;
+}
+.mapDisplay{
+    width: 103px;
+    margin-right: 22px;
+    text-align: center;
+}
+.mapFills{
     fill: #999999;
 }

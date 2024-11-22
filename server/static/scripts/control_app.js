@@ -274,12 +274,59 @@ timeoutB.addEventListener("change", () => {
 })
 
 const mapNum = document.querySelectorAll('input[name="val_mapPlayed"]'); // send which map is being played
-                                                                             // would like to update at some point to have it show that the map has *been* played, its score, and who picked the map
+// would like to update at some point to have it show that the map has *been* played, its score, and who picked the map
 
-mapNum.forEach(radioButton => {
+mapNum.forEach(radioButton => { //update map value 1 thru 5
     radioButton.addEventListener('change', () => {
         const mapValue = document.querySelector('input[name="val_mapPlayed"]:checked').value;
         socket.emit("mapProgress", mapValue);
     })
 })
 
+// map names
+let BO3map1_inp = document.querySelector("#valBO3_map1");//bo3
+let BO3map2_inp = document.querySelector("#valBO3_map2");
+let BO3map3_inp = document.querySelector("#valBO3_map3");
+let BO5map1_inp = document.querySelector("#valBO5_map1");//bo5
+let BO5map2_inp = document.querySelector("#valBO5_map2");
+let BO5map3_inp = document.querySelector("#valBO5_map3");
+let BO5map4_inp = document.querySelector("#valBO5_map4");
+let BO5map5_inp = document.querySelector("#valBO5_map5");
+let map1_out = "no_sel";
+let map2_out = "no_sel";
+let map3_out = "no_sel";
+let map4_out = "no_sel";
+let map5_out = "no_sel";
+
+valBO3_map1.addEventListener("change", () => {
+    map1_out = BO3map1_inp.value;
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})
+valBO3_map2.addEventListener("change", () => {
+    map2_out = BO3map2_inp.value;
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})
+valBO3_map3.addEventListener("change", () => {
+    map3_out = BO3map3_inp.value;
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})
+valBO5_map1.addEventListener("change", () => {
+    map1_out = BO5map1_inp.value;
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})
+valBO5_map2.addEventListener("change", () => {
+    map2_out = BO5map2_inp.value;
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})
+valBO5_map3.addEventListener("change", () => {
+    map3_out = BO5map3_inp.value;
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})
+valBO5_map4.addEventListener("change", () => {
+    map4_out = BO5map4_inp.value;
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})
+valBO5_map5.addEventListener("change", () => {
+    map5_out = BO5map5_inp.value;
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})

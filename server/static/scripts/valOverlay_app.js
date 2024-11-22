@@ -175,18 +175,30 @@ socket.on("activeGame", (arg) => {
                 currentFormat = 0;
                 document.getElementById("BO3mapDisplay").style.fillOpacity = 0;
                 document.getElementById("BO5mapDisplay").style.fillOpacity = 0;
+
+                document.getElementById("mapNames").style.display = "none";
             }
             else{
                 if (arg == 1){
                     currentFormat = 1;
+                    document.getElementById("map1of3").style.fill = "#222222";
                     document.getElementById("BO3mapDisplay").style.fillOpacity = 1;
                     document.getElementById("BO5mapDisplay").style.fillOpacity = 0;
+
+                    document.getElementById("mapNames").style.display = "inline-flex";
+                    document.getElementById("map4").style.display = "none";
+                    document.getElementById("map5").style.display = "none";
                 }
                 else{
                     if (arg == 2){
                         currentFormat = 2;
+                        document.getElementById("map1of5").style.fill = "#222222";
                         document.getElementById("BO3mapDisplay").style.fillOpacity = 0;
                         document.getElementById("BO5mapDisplay").style.fillOpacity = 1;
+
+                        document.getElementById("mapNames").style.display = "inline-flex";
+                        document.getElementById("map4").style.display = "block";
+                        document.getElementById("map5").style.display = "block";
                     }
                 }
             }
@@ -268,6 +280,36 @@ socket.on("activeGame", (arg) => {
                                 }
                             }
                         }
+                    }
+                }
+            }
+        })
+
+        socket.on("mapSelReturn", (args) => {
+            if (currentFormat == 0){
+                document.getElementById("mapNames").style.display = "none";
+            }
+            else{
+                if (currentFormat == 1){
+                    document.getElementById("mapNames").style.display = "inline-flex";
+                    document.getElementById("map4").style.display = "none";
+                    document.getElementById("map5").style.display = "none";
+
+                    document.getElementById("map1").textContent = args[0];
+                    document.getElementById("map2").textContent = args[1];
+                    document.getElementById("map3").textContent = args[2];
+                }
+                else {
+                    if (currentFormat == 2){
+                        document.getElementById("mapNames").style.display = "inline-flex";
+                        document.getElementById("map4").style.display = "block";
+                        document.getElementById("map5").style.display = "block";
+    
+                        document.getElementById("map1").textContent = args[0];
+                        document.getElementById("map2").textContent = args[1];
+                        document.getElementById("map3").textContent = args[2];
+                        document.getElementById("map4").textContent = args[3];
+                        document.getElementById("map5").textContent = args[4];
                     }
                 }
             }
