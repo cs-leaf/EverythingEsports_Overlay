@@ -38,11 +38,8 @@ let timeoutsLeft = [2,2]; // A = [0] and B = [1]
 let currentMapNum = 1;
 let mapPool = ["abyss", "abyss", "abyss", "abyss", "abyss",];
 
-// listen for connects and disconnects
-io.on('connection', socket => {
-    console.log(`User ${socket.id} connected`)
-
-    io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors]); //sends updated to any clients rejoining a session
+function bigBatchEmit() {
+    io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors ]); //sends updated to any clients rejoining a session
     io.emit("returnRecords", [rWins, rLosses]);
     io.emit("returnScores", scores);
     io.emit("returnFlip", flipped);
@@ -50,6 +47,13 @@ io.on('connection', socket => {
     io.emit("formatReturn", bestOf);
     io.emit("returnTimeoutsVAL", timeoutsLeft);
     io.emit("mapReturn", currentMapNum);
+};
+
+// listen for connects and disconnects
+io.on('connection', socket => {
+    console.log(`User ${socket.id} connected`)
+
+    bigBatchEmit(); // sends out all packages to those joining the session.
 
     //listen for team information updates
     socket.on("updateInfoA", (args) => {
@@ -105,25 +109,14 @@ io.on('connection', socket => {
     socket.on("flipStatus", (arg) => {
         flipped = arg;
         console.log("Flipped status is... " + flipped);
-        io.emit("returnFlip", flipped);
-        io.emit("activeGame", gameSelected);
-        io.emit("returnScores", scores);
-        io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors]);
-        io.emit("formatReturn", bestOf);
-        io.emit("returnTimeoutsVAL", timeoutsLeft);
+        bigBatchEmit();
     })
 
     //listen for game selection
     socket.on("gameSelection", (arg) => {
         gameSelected = arg;
         console.log("The game currently active is " + gameSelected);
-        io.emit("returnFlip", flipped);
-        io.emit("activeGame", gameSelected);
-        io.emit("returnScores", scores);
-        io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors]);
-        io.emit("formatReturn", bestOf);
-        io.emit("returnTimeoutsVAL", timeoutsLeft);
-        io.emit("mapReturn", currentMapNum);
+        bigBatchEmit();
     })
 
     //listen for best of format

@@ -32,7 +32,14 @@ td{
 .middleBtns{
     margin: 10% 0;
 }
-
+.buttonDiv{
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+.buttonDiv > button{
+    border-radius: 5px;
+}
 
 /* ids */
 #teamInfoForm, #scoreControl{

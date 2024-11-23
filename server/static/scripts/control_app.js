@@ -5,6 +5,20 @@ let scoreA = 0;
 let scoreB = 0;
 let activeGame = 0; // 0 is none, 1 is VALORANT, 2 is Overwatch2
 
+//define base functions
+//SUBMIT CHANGES INSTEAD OF LIVE UPDATES
+function submitChanges() {
+    ctrlBatchOut();
+    console.log("Sent out a Batch Update");
+}
+
+function ctrlBatchOut() { //emits all information changed in the Team Specific Panels
+    socket.emit("updateInfoA", [ nameA_out, logoA_out, pcolA_out, scolA_out ]);
+    socket.emit("updateRecordA", [ winsA_out, lossesA_out ]);
+    socket.emit("updateInfoB", [ nameB_out, logoB_out, pcolB_out, scolB_out ]);
+    socket.emit("updateRecordB", [ winsB_out, lossesB_out ]);
+};
+
 //page/text updates
 socket.on("returnScores", (arg) => {
     document.getElementById("mapScoreA").textContent = arg[0];
@@ -18,11 +32,23 @@ socket.on("returnInfo", (args) => {
     //change names
     document.getElementById("scoreLabelA").textContent = args[0][0] + " Score Controls";
     document.getElementById("scoreLabelB").textContent = args[0][1] + " Score Controls";
-    //logos
-    //colors
-});
 
-//team info stuff
+    //placeholders
+    document.getElementById("nameA").placeholder = args[0][0];
+    document.getElementById("nameB").placeholder = args[0][1];
+    document.getElementById("logoA").placeholder = args[1][0];
+    document.getElementById("logoB").placeholder = args[1][1];
+    document.getElementById("pcolA").placeholder = args[2][0];
+    document.getElementById("pcolB").placeholder = args[2][1];
+    document.getElementById("scolA").placeholder = args[3][0];
+    document.getElementById("scolB").placeholder = args[3][1];
+});
+socket.on("returnRecords", (args) => {
+    document.getElementById("winsA").placeholder = args[0][0];
+    document.getElementById("winsB").placeholder = args[0][1];
+})
+
+//team info stuff (REWORK FOR SUBMIT BUTTON)
 let nameA_inp = document.getElementById("nameA"); //define the A inputs
 let logoA_inp = document.getElementById("logoA");
 let pColA_inp = document.getElementById("pcolA");
@@ -36,36 +62,30 @@ let scolA_out = "";
 let winsA_out = "";
 let lossesA_out = "";
 
-    //listen for input updates on the html
+    //listen for input updates on the html (REWORK FOR SUMBIT BUTTON)
 nameA.addEventListener("change", () => {
     nameA_out = nameA_inp.value;
     console.log("Team A's name has been updated to " + nameA_out);
-    socket.emit("updateInfoA", [ nameA_out, logoA_out, pcolA_out, scolA_out ]); //send info updates to the server
 })
 logoA.addEventListener("change", () => {
     logoA_out = logoA_inp.value;
     console.log("Team A's logo link has been updated to " + logoA_out);
-    socket.emit("updateInfoA", [ nameA_out, logoA_out, pcolA_out, scolA_out ]);
 })
 pcolA.addEventListener("change", () => {
     pcolA_out = pColA_inp.value;
     console.log("Team A's primary color has been updated to " + pcolA_out);
-    socket.emit("updateInfoA", [ nameA_out, logoA_out, pcolA_out, scolA_out ]); 
 })
 scolA.addEventListener("change", () => {
     scolA_out = sColA_inp.value;
     console.log("Team A's secondary color has been updated to " + scolA_out);
-    socket.emit("updateInfoA", [ nameA_out, logoA_out, pcolA_out, scolA_out ]);
 })
 winsA.addEventListener("change", () => { //update record
     winsA_out = winsA_inp.value;
     console.log("Team A's total wins has been updated to " + winsA_out);
-    socket.emit("updateRecordA", [ winsA_out, lossesA_out ]);
 })
 lossesA.addEventListener("change", () => { //update record
     lossesA_out = lossesA_inp.value;
     console.log("Team A's total losses has been updated to " + winsA_out);
-    socket.emit("updateRecordA", [ winsA_out, lossesA_out ]);
 })
 
 let nameB_inp = document.getElementById("nameB"); //define the B inputs
@@ -81,37 +101,36 @@ let scolB_out = "";
 let winsB_out = "";
 let lossesB_out = "";
 
-    //listen for input updates on the html
+    //listen for input updates on the html (REWORK FOR SUMBIT BUTTON)
 nameB.addEventListener("change", () => {
     nameB_out = nameB_inp.value;
     console.log("Team B's name has been updated to " + nameB_out);
-    socket.emit("updateInfoB", [ nameB_out, logoB_out, pcolB_out, scolB_out ]); //send info updates to the server
 })
 logoB.addEventListener("change", () => {
     logoB_out = logoB_inp.value;
     console.log("Team B's logo link has been updated to " + logoB_out);
-    socket.emit("updateInfoB", [ nameB_out, logoB_out, pcolB_out, scolB_out ])
 })
 pcolB.addEventListener("change", () => {
     pcolB_out = pColB_inp.value;
     console.log("Team B's primary color has been updated to " + pcolB_out);
-    socket.emit("updateInfoB", [ nameB_out, logoB_out, pcolB_out, scolB_out ]) 
 })
 scolB.addEventListener("change", () => {
     scolB_out = sColB_inp.value;
     console.log("Team B's secondary color has been updated to " + scolB_out);
-    socket.emit("updateInfoB", [ nameB_out, logoB_out, pcolB_out, scolB_out ])
 })
 winsB.addEventListener("change", () => { //update record
     winsB_out = winsB_inp.value;
     console.log("Team B's total wins has been updated to " + winsB_out);
-    socket.emit("updateRecordB", [ winsB_out, lossesB_out ]);
 })
 lossesB.addEventListener("change", () => { //update record
     lossesB_out = lossesB_inp.value;
     console.log("Team A's total losses has been updated to " + winsB_out);
-    socket.emit("updateRecordB", [ winsB_out, lossesB_out ]);
 })
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 //score functions
 function incScoreA() { //inc A
