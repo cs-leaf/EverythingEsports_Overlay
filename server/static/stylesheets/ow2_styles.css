@@ -1,0 +1,36 @@
+  @import url("https://use.typekit.net/sso3kkk.css");
+
+
+#lBody, #rBody{
+    fill: coral;
+}
+
+#leftScore{
+    display: inline-flex;
+    float: left;
+}
+#rightScore{
+    display: inline-flex;
+    float: right;
+}
+
+text{
+    font-weight: 700;
+    fill: white;
+    paint-order: stroke;
+    stroke: black;
+    stroke-width: 4px;
+}
+.scoreText, .recordText{
+    font-family: "Downtempo-Bold", "Downtempo";
+}
+.nameText{
+    font-family: "Termina-Bold", "Termina";
+}
+.scoreText{
+    font-size: 48px;
+
+}
+.nameText, .recordText{
+    font-size: 28px;
+}

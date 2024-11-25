@@ -26,6 +26,7 @@ const io = new Server(expressServer, {
 // SET SCORES
 let scores = [0,0]; // A = [0] and B = [1]
 let names = ["Team A", "Team B"];
+let tags = ["TA1", "TB2"];
 let logos = ["https://placehold.co/400","https://placehold.co/400"];
 let primaryColors = ["#FF0000", "#00FF00"];
 let secondaryColors = ["#FFFFFF", "#000000"];
@@ -39,10 +40,9 @@ let currentMapNum = 1;
 let mapPool = ["abyss", "abyss", "abyss", "abyss", "abyss",];
 
 function bigBatchEmit() {
-    io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors ]); //sends updated to any clients rejoining a session
+    io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors, tags ]); //sends updated to any clients rejoining a session
     io.emit("returnRecords", [rWins, rLosses]);
     io.emit("returnScores", scores);
-    io.emit("returnFlip", flipped);
     io.emit("activeGame", gameSelected);
     io.emit("formatReturn", bestOf);
     io.emit("returnTimeoutsVAL", timeoutsLeft);
@@ -58,49 +58,53 @@ io.on('connection', socket => {
     //listen for team information updates
     socket.on("updateInfoA", (args) => {
         const updatedName = args[0] || names[0]; 
+        const updatedTag = args[4] || tags[0]
         const updatedLogo = args[1] || logos[0]; 
         const updatedPrimaryColor = args[2] || primaryColors[0]; 
         const updatedSecondaryColor = args[3] || secondaryColors[0];
-        names.splice(0, 1, updatedName);
-        logos.splice(0, 1, updatedLogo);
-        primaryColors.splice(0, 1, updatedPrimaryColor);
-        secondaryColors.splice(0, 1, updatedSecondaryColor);
-        io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors]);
+        names[0] = updatedName;
+        tags[0] = updatedTag;
+        logos[0] = updatedLogo;
+        primaryColors[0] = updatedPrimaryColor;
+        secondaryColors[0] = updatedSecondaryColor;
+        io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors, tags]);
     })
     socket.on("updateInfoB", (args) => {
-        const updatedName = args[0] || names[0]; 
-        const updatedLogo = args[1] || logos[0]; 
+        const updatedName = args[0] || names[1]; 
+        const updatedTag = args[4] || tags[1];
+        const updatedLogo = args[1] || logos[1]; 
         const updatedPrimaryColor = args[2] || primaryColors[1]; 
         const updatedSecondaryColor = args[3] || secondaryColors[1];
-        names.splice(1, 1, updatedName);
-        logos.splice(1, 1, updatedLogo);
-        primaryColors.splice(1, 1, updatedPrimaryColor);
-        secondaryColors.splice(1, 1, updatedSecondaryColor);
-        io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors]);
+        names[1] = updatedName;
+        tags[1] = updatedTag;
+        logos[1] = updatedLogo;
+        primaryColors[1] = updatedPrimaryColor;
+        secondaryColors[1] = updatedSecondaryColor;
+        io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors, tags]);
     })
     socket.on("updateRecordA", (args) => {
        const updatedWins = args[0] || rWins[0];
        const updatedLosses = args[1] || rLosses[0];
-       rWins.splice(0, 1, updatedWins);
-       rLosses.splice(0, 1, updatedLosses);
+       rWins[0] = updatedWins;
+       rLosses[0] = updatedLosses;
        io.emit("returnRecords", [rWins, rLosses]);
     })
     socket.on("updateRecordB", (args) => {
         const updatedWins = args[0] || rWins[1];
         const updatedLosses = args[1] || rLosses[1];
-        rWins.splice(1, 1, updatedWins);
-        rLosses.splice(1, 1, updatedLosses);
+        rWins[1] = updatedWins;
+        rLosses[1] = updatedLosses;
         io.emit("returnRecords", [rWins, rLosses]);
      })
 
     //listen for score updates from the controller
     socket.on("updateScoreA", (arg) => {
-        scores.splice(0, 1, arg);
+        scores[0] = arg;
         console.log(scores);
         io.emit("returnScores", scores);
     })
     socket.on("updateScoreB", (arg) => {
-        scores.splice(1, 1, arg);
+        scores[1] = arg;
         console.log(scores);
         io.emit("returnScores", scores);
     })

@@ -59,15 +59,15 @@ socket.on("activeGame", (arg) => {
 
             // change names
             if (flipped == false){
-                document.getElementById("teamNameL").textContent = args[0][0];// team A on left, team B on right
-                document.getElementById("teamNameR").textContent = args[0][1]; 
+                document.getElementById("teamNameL").textContent = args[4][0];// team A on left, team B on right
+                document.getElementById("teamNameR").textContent = args[4][1]; 
                 document.getElementById("lBody").style.fill = "url(#LgradA)";
                 document.getElementById("rBody").style.fill = "url(#RgradB)";
             }
             else{
                 if (flipped == true){
-                    document.getElementById("teamNameL").textContent = args[0][1];// team B on left, team A on right
-                    document.getElementById("teamNameR").textContent = args[0][0];
+                    document.getElementById("teamNameL").textContent = args[4][1];// team B on left, team A on right
+                    document.getElementById("teamNameR").textContent = args[4][0];
                     document.getElementById("lBody").style.fill = "url(#LgradB)";
                     document.getElementById("rBody").style.fill = "url(#RgradA)";
                 }
@@ -75,95 +75,80 @@ socket.on("activeGame", (arg) => {
         });
 
         socket.on("returnTimeoutsVAL", (args) => {
+
             timeoutsLeftA = args[0];
             timeoutsLeftB = args[1];
 
+            console.log("Timeouts A: " + timeoutsLeftA + " Timeouts B: " +timeoutsLeftB);
+
             if (flipped == false){
-                if (timeoutsLeftA == 2 && timeoutsLeftB == 2){
+                if (timeoutsLeftA == 2){
                     document.getElementById("lTimeout1").style.fillOpacity = 1;
                     document.getElementById("lTimeout2").style.fillOpacity = 1;
-    
-                    document.getElementById("rTimeout1").style.fillOpacity = 1;
-                    document.getElementById("rTimeout2").style.fillOpacity = 1;
                 }
                 else{
-                    if (timeoutsLeftA == 1 && timeoutsLeftB == 2){
+                    if (timeoutsLeftA == 1){
                         document.getElementById("lTimeout1").style.fillOpacity = 0;
                         document.getElementById("lTimeout2").style.fillOpacity = 1;
-    
-                        document.getElementById("rTimeout1").style.fillOpacity = 1;
-                        document.getElementById("rTimeout2").style.fillOpacity = 1;
                     }
                     else{
-                        if (timeoutsLeftA == 0 && timeoutsLeftB == 2){
+                        if (timeoutsLeftA == 0){
                             document.getElementById("lTimeout1").style.fillOpacity = 0;
                             document.getElementById("lTimeout2").style.fillOpacity = 0;
-        
-                            document.getElementById("rTimeout1").style.fillOpacity = 1;
-                            document.getElementById("rTimeout2").style.fillOpacity = 1;
-                        }
-                        else{
-                            if (timeoutsLeftA == 0 && timeoutsLeftB == 1){
-                                document.getElementById("lTimeout1").style.fillOpacity = 0;
-                                document.getElementById("lTimeout2").style.fillOpacity = 0;
-        
-                                document.getElementById("rTimeout1").style.fillOpacity = 0;
-                                document.getElementById("rTimeout2").style.fillOpacity = 1;
-                            }
-                            else{
-                                if (timeoutsLeftA == 0 && timeoutsLeftB == 0){
-                                    document.getElementById("lTimeout1").style.fillOpacity = 0;
-                                    document.getElementById("lTimeout2").style.fillOpacity = 0;
-            
-                                    document.getElementById("rTimeout1").style.fillOpacity = 0;
-                                    document.getElementById("rTimeout2").style.fillOpacity = 0;
-                                }
-                            }
                         }
                     }
                 }
             }
             else{
-                if (timeoutsLeftA == 2 && timeoutsLeftB == 2){
+                if (timeoutsLeftB == 2){
                     document.getElementById("lTimeout1").style.fillOpacity = 1;
                     document.getElementById("lTimeout2").style.fillOpacity = 1;
-    
+                }
+                else{
+                    if (timeoutsLeftB == 1){
+                        document.getElementById("lTimeout1").style.fillOpacity = 0;
+                        document.getElementById("lTimeout2").style.fillOpacity = 1;
+                    }
+                    else{
+                        if (timeoutsLeftB == 0){
+                            document.getElementById("lTimeout1").style.fillOpacity = 0;
+                            document.getElementById("lTimeout2").style.fillOpacity = 0;
+                        }
+                    }
+                }
+            }
+            if (flipped == false){
+                if (timeoutsLeftB == 2){
                     document.getElementById("rTimeout1").style.fillOpacity = 1;
                     document.getElementById("rTimeout2").style.fillOpacity = 1;
                 }
                 else{
-                    if (timeoutsLeftA == 1 && timeoutsLeftB == 2){
-                        document.getElementById("lTimeout1").style.fillOpacity = 1;
-                        document.getElementById("lTimeout2").style.fillOpacity = 1;
-    
+                    if (timeoutsLeftB == 1){
                         document.getElementById("rTimeout1").style.fillOpacity = 0;
                         document.getElementById("rTimeout2").style.fillOpacity = 1;
                     }
                     else{
-                        if (timeoutsLeftA == 0 && timeoutsLeftB == 2){
-                            document.getElementById("lTimeout1").style.fillOpacity = 1;
-                            document.getElementById("lTimeout2").style.fillOpacity = 1;
-        
+                        if (timeoutsLeftB == 0){
                             document.getElementById("rTimeout1").style.fillOpacity = 0;
                             document.getElementById("rTimeout2").style.fillOpacity = 0;
                         }
-                        else{
-                            if (timeoutsLeftA == 0 && timeoutsLeftB == 1){
-                                document.getElementById("lTimeout1").style.fillOpacity = 0;
-                                document.getElementById("lTimeout2").style.fillOpacity = 1;
-        
-                                document.getElementById("rTimeout1").style.fillOpacity = 0;
-                                document.getElementById("rTimeout2").style.fillOpacity = 0;
-                            }
-                            else{
-                                if (timeoutsLeftA == 0 && timeoutsLeftB == 0){
-                                    document.getElementById("lTimeout1").style.fillOpacity = 0;
-                                    document.getElementById("lTimeout2").style.fillOpacity = 0;
-            
-                                    document.getElementById("rTimeout1").style.fillOpacity = 0;
-                                    document.getElementById("rTimeout2").style.fillOpacity = 0;
-                                }
-                            }
+                    }
+                }
+            }
+            else{
+                if (timeoutsLeftA == 2){
+                    document.getElementById("rTimeout1").style.fillOpacity = 1;
+                    document.getElementById("lTimeout2").style.fillOpacity = 1;
+                }
+                else{
+                    if (timeoutsLeftA == 1){
+                        document.getElementById("rTimeout1").style.fillOpacity = 0;
+                        document.getElementById("rTimeout2").style.fillOpacity = 1;
+                    }
+                    else{
+                        if (timeoutsLeftA == 0){
+                            document.getElementById("rTimeout1").style.fillOpacity = 0;
+                            document.getElementById("rTimeout2").style.fillOpacity = 0;
                         }
                     }
                 }

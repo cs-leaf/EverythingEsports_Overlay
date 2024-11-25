@@ -13,9 +13,9 @@ function submitChanges() {
 }
 
 function ctrlBatchOut() { //emits all information changed in the Team Specific Panels
-    socket.emit("updateInfoA", [ nameA_out, logoA_out, pcolA_out, scolA_out ]);
+    socket.emit("updateInfoA", [ nameA_out, logoA_out, pcolA_out, scolA_out, tagA_out ]);
     socket.emit("updateRecordA", [ winsA_out, lossesA_out ]);
-    socket.emit("updateInfoB", [ nameB_out, logoB_out, pcolB_out, scolB_out ]);
+    socket.emit("updateInfoB", [ nameB_out, logoB_out, pcolB_out, scolB_out, tagB_out ]);
     socket.emit("updateRecordB", [ winsB_out, lossesB_out ]);
 };
 
@@ -50,12 +50,14 @@ socket.on("returnRecords", (args) => {
 
 //team info stuff (REWORK FOR SUBMIT BUTTON)
 let nameA_inp = document.getElementById("nameA"); //define the A inputs
+let tagA_inp = document.getElementById("tagA");
 let logoA_inp = document.getElementById("logoA");
 let pColA_inp = document.getElementById("pcolA");
 let sColA_inp = document.getElementById("scolA");
 let winsA_inp = document.getElementById("winsA");
 let lossesA_inp = document.getElementById("lossesA");
 let nameA_out = "";
+let tagA_out = "";
 let logoA_out = "";
 let pcolA_out = "";
 let scolA_out = "";
@@ -66,6 +68,10 @@ let lossesA_out = "";
 nameA.addEventListener("change", () => {
     nameA_out = nameA_inp.value;
     console.log("Team A's name has been updated to " + nameA_out);
+})
+tagB.addEventListener("change", () => {
+    tagA_out = tagA_inp.value;
+    console.log("Team A's tag has been updated to " + tagA_out);
 })
 logoA.addEventListener("change", () => {
     logoA_out = logoA_inp.value;
@@ -89,12 +95,14 @@ lossesA.addEventListener("change", () => { //update record
 })
 
 let nameB_inp = document.getElementById("nameB"); //define the B inputs
+let tagB_inp = document.getElementById("tagB");
 let logoB_inp = document.getElementById("logoB");
 let pColB_inp = document.getElementById("pcolB");
 let sColB_inp = document.getElementById("scolB");
 let winsB_inp = document.getElementById("winsB");
 let lossesB_inp = document.getElementById("lossesB");
 let nameB_out = "";
+let tagB_out = "";
 let logoB_out = "";
 let pcolB_out = "";
 let scolB_out = "";
@@ -105,6 +113,10 @@ let lossesB_out = "";
 nameB.addEventListener("change", () => {
     nameB_out = nameB_inp.value;
     console.log("Team B's name has been updated to " + nameB_out);
+})
+tagB.addEventListener("change", () => {
+    tagB_out = tagB_inp.value;
+    console.log("Team B's tag has been updated to " + tagB_out);
 })
 logoB.addEventListener("change", () => {
     logoB_out = logoB_inp.value;

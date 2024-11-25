@@ -30,14 +30,6 @@ h1{
     margin-right: 75px;
 }
 
-#boxNameL,#boxNameR{
-    width: 160px;
-    text-align: center;
-    display: inline-block;
-    margin: 55px;
-    margin-top: 0;
-}
-
 #lBody{
     fill: #000FFF;
 }
@@ -54,6 +46,13 @@ h1{
 text{
     fill: #000000;
     font-size: xx-large;
+}
+
+.nameText{
+    fill: white;
+    paint-order: stroke;
+    stroke: black;
+    stroke-width: 4px;
 }
 
 #BO3mapDisplay{

@@ -11,6 +11,49 @@
     <link rel="stylesheet" href="./stylesheets/ow2_styles.css">
 </head>
 <body>
-    
+    <div class="svgContainer">
+
+        <div id="leftScore">
+            <svg width="525" height="57">
+                <defs>
+                    <lineargradient id="LgradA" x1="0%" x2="100%" y1="0%" y2="0%">
+                        <stop id="stopSAL" offset="0%" style="stop-color: #FFFFFF; stop-opacity: 1" />
+                        <stop id="stopPAL" offset="100%" style="stop-color: #000000; stop-opacity: 1" />
+                    </lineargradient>
+                    <lineargradient id="LgradB" x1="0%" x2="100%" y1="0%" y2="0%">
+                        <stop id="stopSBL" offset="0%" style="stop-color: #FFFFFF; stop-opacity: 1" />
+                        <stop id="stopPBL" offset="100%" style="stop-color: #000000; stop-opacity: 1" />
+                    </lineargradient>
+                </defs>
+                <g id="OWScorebug_Left">
+                    <path id="lBody" d="M20,0h496c4.97,0,9,4.03,9,9v28c0,11.04-8.96,20-20,20H9c-4.97,0-9-4.03-9-9v-28C0,8.96,8.96,0,20,0Z"/>
+                    <text id="lName" class="nameText" text-anchor="middle" transform="translate(251.23 39.31)"><tspan x="0" y="0">TEAM NAME</tspan></text>
+                    <text id="lScore" class="scoreText" transform="translate(479.61 42.22)"><tspan x="0" y="0">0</tspan></text>
+                    <text id="lRecord" class="recordText" text-anchor="middle" transform="translate(40.58 38.53)"><tspan x="0" y="0">0-0</tspan></text>
+                </g>
+            </svg>
+        </div>
+
+        <div id="rightScore">
+            <svg width="525" height="57">
+                <defs>
+                    <lineargradient id="RgradA" x1="0%" x2="100%" y1="0%" y2="0%">
+                        <stop id="stopSAR" offset="0%" style="stop-color: #FFFFFF; stop-opacity: 1" />
+                        <stop id="stopPAR" offset="100%" style="stop-color: #000000; stop-opacity: 1" />
+                    </lineargradient>
+                    <lineargradient id="RgradB" x1="0%" x2="100%" y1="0%" y2="0%">
+                        <stop id="stopPBR" offset="0%" style="stop-color: #FFFFFF; stop-opacity: 1" />
+                        <stop id="stopSBR" offset="100%" style="stop-color: #000000; stop-opacity: 1" />
+                    </lineargradient>
+                </defs>
+                <g id="OWScorebug_Right">
+                    <path id="rBody" d="M9,0h496C516.04,0,525,8.96,525,20v28c0,4.97-4.03,9-9,9H20C8.96,57,0,48.04,0,37V9C0,4.03,4.03,0,9,0Z" transform="translate(525 57) rotate(-180)"/>
+                    <text id="rName" class="nameText" text-anchor="middle" transform="translate(251.23 39.31)"><tspan x="0" y="0">TEAM NAME</tspan></text>
+                    <text id="rScore" class="scoreText" transform="translate(18.61 42.22)"><tspan x="0" y="0">0</tspan></text>
+                    <text id="rRecord" class="recordText" text-anchor="middle" transform="translate(482.58 38.38)"><tspan x="0" y="0">0-0</tspan></text>
+                </g>
+            </svg>
+        </div>
+    </div>
 </body>
 </html>
