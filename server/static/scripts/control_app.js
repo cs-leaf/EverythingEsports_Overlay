@@ -4,6 +4,7 @@ const socket = io('ws://localhost:5500');
 let scoreA = 0;
 let scoreB = 0;
 let activeGame = 0; // 0 is none, 1 is VALORANT, 2 is Overwatch2
+let format = 0;
 
 //define base functions
 //SUBMIT CHANGES INSTEAD OF LIVE UPDATES
@@ -252,9 +253,9 @@ const bestOfBtns = document.querySelectorAll('input[name="valBestOf"]');
 
 bestOfBtns.forEach(radioButton => { //VALORANT
     radioButton.addEventListener('change', () => {
-        const selectedValue = document.querySelector('input[name="valBestOf"]:checked').value;
-        console.log('Selected format:', selectedValue);
-        socket.emit("bestOfFormat", selectedValue)
+        format = document.querySelector('input[name="valBestOf"]:checked').value;
+        console.log('Selected format:', format);
+        socket.emit("bestOfFormat", format);
     })
 })
 
@@ -331,36 +332,72 @@ let map5_out = "no_sel";
 
 valBO3_map1.addEventListener("change", () => {
     map1_out = BO3map1_inp.value;
-    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
 })
 valBO3_map2.addEventListener("change", () => {
     map2_out = BO3map2_inp.value;
-    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
 })
 valBO3_map3.addEventListener("change", () => {
     map3_out = BO3map3_inp.value;
-    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
 })
 valBO5_map1.addEventListener("change", () => {
     map1_out = BO5map1_inp.value;
-    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
 })
 valBO5_map2.addEventListener("change", () => {
     map2_out = BO5map2_inp.value;
-    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
 })
 valBO5_map3.addEventListener("change", () => {
     map3_out = BO5map3_inp.value;
-    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
 })
 valBO5_map4.addEventListener("change", () => {
     map4_out = BO5map4_inp.value;
-    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
 })
 valBO5_map5.addEventListener("change", () => {
     map5_out = BO5map5_inp.value;
-    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
 })
+
+let val1WinnerBO3_inp = document.querySelector("#val_map1WinnerBO3");
+let val2WinnerBO3_inp = document.querySelector("#val_map2WinnerBO3");
+let val3WinnerBO3_inp = document.querySelector("#val_map3WinnerBO3");
+let val1WinnerBO5_inp = document.querySelector("#val_map1WinnerBO5");
+let val2WinnerBO5_inp = document.querySelector("#val_map2WinnerBO5");
+let val3WinnerBO5_inp = document.querySelector("#val_map3WinnerBO5");
+let val4Winner_inp = document.querySelector("#val_map4Winner");
+let val5Winner_inp = document.querySelector("#val_map5Winner");
+let valWinner1_out = "";
+let valWinner2_out = "";
+let valWinner3_out = "";
+let valWinner4_out = "";
+let valWinner5_out = "";
+
+val_map1WinnerBO3.addEventListener("change", () => {
+    valWinner1_out = val1WinnerBO3_inp.value;
+})
+val_map2WinnerBO3.addEventListener("change", () => {
+    valWinner2_out = val2WinnerBO3_inp.value;
+})
+val_map3WinnerBO3.addEventListener("change", () => {
+    valWinner3_out = val3WinnerBO3_inp.value;
+})
+val_map1WinnerBO5.addEventListener("change", () => {
+    valWinner1_out = val1WinnerBO5_inp.value;
+})
+val_map2WinnerBO5.addEventListener("change", () => {
+    valWinner2_out = val2WinnerBO5_inp.value;
+})
+val_map3WinnerBO5.addEventListener("change", () => {
+    valWinner3_out = val3WinnerBO5_inp.value;
+})
+val_map4Winner.addEventListener("change", () => {
+    valWinner4_out = val4Winner_inp.value;
+})
+val_map5Winner.addEventListener("change", () => {
+    valWinner5_out = val5Winner_inp.value;
+})
+
+function submitValChanges() {
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+    socket.emit("mapWinners", [ valWinner1_out, valWinner2_out, valWinner3_out, valWinner4_out, valWinner5_out ])
+}
 
 // OVERWATCH SPECIFIC STUFF
 
@@ -386,11 +423,11 @@ let OWmap2winner_inp = document.querySelector("#OWmap2Winner");
 let OWmap3winner_inp = document.querySelector("#OWmap3Winner");
 let OWmap4winner_inp = document.querySelector("#OWmap4Winner");
 let OWmap5winner_inp = document.querySelector("#OWmap5Winner");
-let winner1_out = "";
-let winner2_out = "";
-let winner3_out = "";
-let winner4_out = "";
-let winner5_out = "";
+let OWwinner1_out = "";
+let OWwinner2_out = "";
+let OWwinner3_out = "";
+let OWwinner4_out = "";
+let OWwinner5_out = "";
 
 OWmap1.addEventListener("change", () => {
     map1_out = OWmap1_inp.value;
@@ -409,24 +446,25 @@ OWmap5.addEventListener("change", () => {
 })
 
 OWmap1Winner.addEventListener("change", () => {
-    winner1_out = OWmap1winner_inp.value;
+    OWwinner1_out = OWmap1winner_inp.value;
 })
 OWmap2Winner.addEventListener("change", () => {
-    winner2_out = OWmap2winner_inp.value;
+    OWwinner2_out = OWmap2winner_inp.value;
 })
 OWmap3Winner.addEventListener("change", () => {
-    winner3_out = OWmap3winner_inp.value;
+    OWwinner3_out = OWmap3winner_inp.value;
 })
 OWmap4Winner.addEventListener("change", () => {
-    winner4_out = OWmap4winner_inp.value;
+    OWwinner4_out = OWmap4winner_inp.value;
 })
 OWmap5Winner.addEventListener("change", () => {
-    winner5_out = OWmap5winner_inp.value;
+    OWwinner5_out = OWmap5winner_inp.value;
 })
 
 function submitOWChanges(){
-    console.log(winner1_out, winner2_out, winner3_out, winner4_out, winner5_out);
-    socket.emit("mapWinners", [ winner1_out, winner2_out, winner3_out, winner4_out, winner5_out ]);
+    console.log(OWwinner1_out, OWwinner2_out, OWwinner3_out, OWwinner4_out, OWwinner5_out);
+    socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+    socket.emit("mapWinners", [ OWwinner1_out, OWwinner2_out, OWwinner3_out, OWwinner4_out, OWwinner5_out ]);
 }
 
 const OWmapNum = document.querySelectorAll('input[name="OW_mapPlayed"]');

@@ -168,6 +168,12 @@
                         <option value="SPLIT">Split</option>
                         <option value="SUNSET">Sunset</option>
                     </select>
+                    <label for="val_map1WinnerBO3">Who won?</label>
+                    <select name="val_map1WinnerBO3" id="val_map1WinnerBO3">
+                        <option value="NONE">Not Concluded</option>
+                        <option value="A">Team A</option>
+                        <option value="B">Team B</option>
+                    </select><br>
 
                     <input type="radio" name="val_mapPlayed" value="2">
                     <label for="valBO3_map2">Map 2:</label>
@@ -184,6 +190,12 @@
                         <option value="SPLIT">Split</option>
                         <option value="SUNSET">Sunset</option>
                     </select>
+                    <label for="val_map2WinnerBO3">Who won?</label>
+                    <select name="val_map2WinnerBO3" id="val_map2WinnerBO3">
+                        <option value="NONE">Not Concluded</option>
+                        <option value="A">Team A</option>
+                        <option value="B">Team B</option>
+                    </select><br>
                     
                     <input type="radio" name="val_mapPlayed" value="3">
                     <label for="valBO3_map3">Map 3:</label>
@@ -200,6 +212,13 @@
                         <option value="SPLIT">Split</option>
                         <option value="SUNSET">Sunset</option>
                     </select>
+                    <label for="val_map3WinnerBO3">Who won?</label>
+                    <select name="val_map3WinnerBO3" id="val_map3WinnerBO3">
+                        <option value="NONE">Not Concluded</option>
+                        <option value="A">Team A</option>
+                        <option value="B">Team B</option>
+                    </select>
+
                 </div>
                 <div id="mapsValBO5">
                     <input type="radio" name="val_mapPlayed" value="1">
@@ -217,6 +236,12 @@
                         <option value="SPLIT">Split</option>
                         <option value="SUNSET">Sunset</option>
                     </select>
+                    <label for="val_map1WinnerBO5">Who won?</label>
+                    <select name="val_map1WinnerBO5" id="val_map1WinnerBO5">
+                        <option value="NONE">Not Concluded</option>
+                        <option value="A">Team A</option>
+                        <option value="B">Team B</option>
+                    </select><br>
 
                     <input type="radio" name="val_mapPlayed" value="2">
                     <label for="valBO5_map2">Map 2:</label>
@@ -233,9 +258,15 @@
                         <option value="SPLIT">Split</option>
                         <option value="SUNSET">Sunset</option>
                     </select>
+                    <label for="val_map2WinnerBO5">Who won?</label>
+                    <select name="val_map2WinnerBO5" id="val_map2WinnerBO5">
+                        <option value="NONE">Not Concluded</option>
+                        <option value="A">Team A</option>
+                        <option value="B">Team B</option>
+                    </select><br>
 
                     <input type="radio" name="val_mapPlayed" value="3">
-                    <label for="valBO5_map3">Map 3:</label>
+                    <label for="valBO5_map3BO5">Map 3:</label>
                     <select name="valBO5_map3" id="valBO5_map3">
                         <option value="ABYSS">Abyss</option>
                         <option value="ASCENT">Ascent</option>
@@ -249,6 +280,12 @@
                         <option value="SPLIT">Split</option>
                         <option value="SUNSET">Sunset</option>
                     </select>
+                    <label for="val_map3WinnerBO5">Who won?</label>
+                    <select name="val_map3WinnerBO5" id="val_map3WinnerBO5">
+                        <option value="NONE">Not Concluded</option>
+                        <option value="A">Team A</option>
+                        <option value="B">Team B</option>
+                    </select><br>
 
                     <input type="radio" name="val_mapPlayed" value="4">
                     <label for="valBO5_map4">Map 4:</label>
@@ -265,6 +302,12 @@
                         <option value="SPLIT">Split</option>
                         <option value="SUNSET">Sunset</option>
                     </select>
+                    <label for="val_map4Winner">Who won?</label>
+                    <select name="val_map4Winner" id="val_map4Winner">
+                        <option value="NONE">Not Concluded</option>
+                        <option value="A">Team A</option>
+                        <option value="B">Team B</option>
+                    </select><br>
 
                     <input type="radio" name="val_mapPlayed" value="5">
                     <label for="valBO5_map5">Map 5:</label>
@@ -281,8 +324,16 @@
                         <option value="SPLIT">Split</option>
                         <option value="SUNSET">Sunset</option>
                     </select>
+                    <label for="val_map5Winner">Who won?</label>
+                    <select name="val_map5Winner" id="val_map5Winner">
+                        <option value="NONE">Not Concluded</option>
+                        <option value="A">Team A</option>
+                        <option value="B">Team B</option>
+                    </select>
                 </div>
             </div>
+
+            <button class="scoreBtn" onclick="submitValChanges()">Submit Map Changes</button>
         </fieldset>
     </div>
 

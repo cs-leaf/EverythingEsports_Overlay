@@ -37,11 +37,11 @@ socket.on("activeGame", (arg) => {
             document.getElementById("stopPBL").style.stopColor = args[2][1]; // team B Left Grad
             document.getElementById("stopSBL").style.stopColor = args[3][1];
 
-            document.getElementById("stopPAR").style.stopColor = args[3][0]; // team A Right grad
-            document.getElementById("stopSAR").style.stopColor = args[2][0];
+            document.getElementById("stopPAR").style.stopColor = args[2][0]; // team A Right grad
+            document.getElementById("stopSAR").style.stopColor = args[3][0];
 
-            document.getElementById("stopPBR").style.stopColor = args[3][1]; // team B Right Grad
-            document.getElementById("stopSBR").style.stopColor = args[2][1];
+            document.getElementById("stopPBR").style.stopColor = args[2][1]; // team B Right Grad
+            document.getElementById("stopSBR").style.stopColor = args[3][1];
 
             if (flipped == false){
                 document.getElementById("lTimeout1").style.fill = args[3][0];
@@ -156,6 +156,7 @@ socket.on("activeGame", (arg) => {
         })
 
         socket.on("formatReturn", (arg) => { //listen for formats to show/hide the map display
+            console.log(currentFormat)
             if (arg == 0){
                 currentFormat = 0;
                 document.getElementById("BO3mapDisplay").style.fillOpacity = 0;
@@ -189,6 +190,23 @@ socket.on("activeGame", (arg) => {
             }
         })
 
+        socket.on("winnerReturn", (args) => {
+            if (currentFormat == 1){
+                document.getElementById("map1of3").style.fill = args[0];
+                document.getElementById("map2of3").style.fill = args[1];
+                document.getElementById("map3of3").style.fill = args[2];
+            }
+            else{
+                if (currentFormat == 2){
+                    document.getElementById("map1of5").style.fill = args[0];
+                    document.getElementById("map2of5").style.fill = args[1];
+                    document.getElementById("map3of5").style.fill = args[2];
+                    document.getElementById("map4of5").style.fill = args[3];
+                    document.getElementById("map5of5").style.fill = args[4];
+                }
+            }
+        })
+
         socket.on("mapReturn", (arg) => {
             if (currentFormat == 0){
                 document.getElementById("BO3mapDisplay").style.fillOpacity = 0;
@@ -200,19 +218,13 @@ socket.on("activeGame", (arg) => {
                     document.getElementById("BO5mapDisplay").style.fillOpacity = 0;
                     if (arg == 1){
                         document.getElementById("map1of3").style.fill = "#222222";
-                        document.getElementById("map2of3").style.fill = "#999999";
-                        document.getElementById("map3of3").style.fill = "#999999";
                     }
                     else{
                         if (arg == 2){
-                            document.getElementById("map1of3").style.fill = "#999999";
                             document.getElementById("map2of3").style.fill = "#222222";
-                            document.getElementById("map3of3").style.fill = "#999999";
                         }
                         else{
                             if (arg == 3){
-                                    document.getElementById("map1of3").style.fill = "#999999";
-                                    document.getElementById("map2of3").style.fill = "#999999";
                                     document.getElementById("map3of3").style.fill = "#222222";
                             }
                         }
@@ -224,41 +236,21 @@ socket.on("activeGame", (arg) => {
                         document.getElementById("BO5mapDisplay").style.fillOpacity = 1;
                     if (arg == 1){
                         document.getElementById("map1of5").style.fill = "#222222";
-                        document.getElementById("map2of5").style.fill = "#999999";
-                        document.getElementById("map3of5").style.fill = "#999999";
-                        document.getElementById("map4of5").style.fill = "#999999";
-                        document.getElementById("map5of5").style.fill = "#999999";
                     }
                     else{
                         if (arg == 2){
-                            document.getElementById("map1of5").style.fill = "#999999";
                             document.getElementById("map2of5").style.fill = "#222222";
-                            document.getElementById("map3of5").style.fill = "#999999";
-                            document.getElementById("map4of5").style.fill = "#999999";
-                            document.getElementById("map5of5").style.fill = "#999999";
                         }
                         else{
                             if (arg == 3){
-                                    document.getElementById("map1of5").style.fill = "#999999";
-                                    document.getElementById("map2of5").style.fill = "#999999";
                                     document.getElementById("map3of5").style.fill = "#222222";
-                                    document.getElementById("map4of5").style.fill = "#999999";
-                                    document.getElementById("map5of5").style.fill = "#999999";
                                 }
                                 else {
                                     if (arg == 4){
-                                    document.getElementById("map1of5").style.fill = "#999999";
-                                    document.getElementById("map2of5").style.fill = "#999999";
-                                    document.getElementById("map3of5").style.fill = "#999999";
-                                    document.getElementById("map4of5").style.fill = "#222222";
-                                    document.getElementById("map5of5").style.fill = "#999999"; 
+                                    document.getElementById("map4of5").style.fill = "#222222"; 
                                     }
                                     else {
                                         if (arg == 5){
-                                            document.getElementById("map1of5").style.fill = "#999999";
-                                            document.getElementById("map2of5").style.fill = "#999999";
-                                            document.getElementById("map3of5").style.fill = "#999999";
-                                            document.getElementById("map4of5").style.fill = "#999999";
                                             document.getElementById("map5of5").style.fill = "#222222";
                                         }
                                     }
