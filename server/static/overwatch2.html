@@ -11,8 +11,52 @@
     <link rel="stylesheet" href="./stylesheets/ow2_styles.css">
 </head>
 <body>
-    <div class="svgContainer">
+    <div id="mapNames">
+        <div class="mapDisplay">
+            <h3 id="map1">Abyss</h3>
+        </div>
+        <div class="mapDisplay">
+            <h3 id="map2">Abyss</h3>
+        </div>
+        <div class="mapDisplay">
+            <h3 id="map3">Abyss</h3>
+        </div>
+        <div class="mapDisplay">
+            <h3 id="map4">Abyss</h3>
+        </div>
+        <div class="mapDisplay">
+            <h3 id="map5">Abyss</h3>
+        </div>
+    </div>
 
+    <div id="BO5mapDisplay">
+        <svg width="640" height="26">
+            <g id="BestOf5Overlay">
+                <polygon id="map5of5" class="mapFills" points="640 13 623.91 26 503.91 26 520 13 503.91 0 623.91 0 640 13"/>
+                <polygon id="map4of5" class="mapFills" points="515 13 498.91 26 378.91 26 395 13 378.91 0 498.91 0 515 13"/>
+                <polygon id="map3of5" class="mapFills" points="390 13 373.91 26 253.91 26 270 13 253.91 0 373.91 0 390 13"/>
+                <polygon id="map2of5" class="mapFills" points="265 13 248.91 26 128.91 26 145 13 128.91 0 248.91 0 265 13"/>
+                <polygon id="map1of5" points="140 13 123.91 26 0 26 0 0 123.91 0 140 13"/>
+              </g>
+        </svg>
+    </div>
+
+    <div id="gamemodebox">
+        <svg width="375" height="34.5">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="black" stop-opacity="60%"></stop>
+              <stop offset="35%" stop-color="black" stop-opacity="75%"></stop>
+              <stop offset="65%" stop-color="black" stop-opacity="75%"></stop>
+              <stop offset="100%" stop-color="black" stop-opacity="60%"></stop>
+            </linearGradient>
+          </defs>
+          <rect id="modeBox" width="375" height="34.5" ry="20"></rect>
+          <text id="modeName" x="50%" y="26">// htmVAL by csleaf //</text>
+        </svg>
+      </div>
+
+    <div class="svgContainer">
         <div id="leftScore">
             <svg width="525" height="57">
                 <defs>

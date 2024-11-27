@@ -61,14 +61,64 @@ socket.on("activeGame", (arg) => {
             console.log(args);
 
             if(flipped == false){
-                document.getElementById("lRecord").textContent = args[0][0] + " - " + args[0][1];
-                document.getElementById("rRecord").textContent = args[1][0] + " - " + args[1][1];
+                document.getElementById("lRecord").textContent = args[0][0] + " - " + args[1][0];
+                document.getElementById("rRecord").textContent = args[0][1] + " - " + args[1][1];
             }
             else{
                 if (flipped == true){
                     document.getElementById("lRecord").textContent = args[1][0] + " - " + args[1][1];
                     document.getElementById("rRecord").textContent = args[0][0] + " - " + args[0][1];
                 }
+            }
+        })
+
+        socket.on("modeReturn", (arg) => {
+            console.log(arg);
+
+            if (arg != "noMode"){
+                document.getElementById("gamemodebox").style.opacity = 1;
+                document.getElementById("modeName").textContent = "// " + arg + " //";
+            }
+            else{
+                document.getElementById("gamemodebox").style.opacity = 0;
+            }
+        })
+
+        socket.on("mapSelReturn", (args) => {
+            document.getElementById("map1").textContent = args[0];
+            document.getElementById("map2").textContent = args[1];
+            document.getElementById("map3").textContent = args[2];
+            document.getElementById("map4").textContent = args[3];
+            document.getElementById("map5").textContent = args[4];
+        })
+
+        socket.on("winnerReturn", (args) => {
+            document.getElementById("map1of5").style.fill = args[0];
+            document.getElementById("map2of5").style.fill = args[1];
+            document.getElementById("map3of5").style.fill = args[2];
+            document.getElementById("map4of5").style.fill = args[3];
+            document.getElementById("map5of5").style.fill = args[4];
+        })
+
+        socket.on("mapReturn", (arg) => {
+            console.log(arg);
+            if (arg = 1) {
+                document.getElementById("map1of5").style.fill = "#222222";
+            }
+            if (arg = 2) {
+                document.getElementById("map2of5").style.fill = "#222222";
+
+            }
+            if (arg = 3) {
+                document.getElementById("map3of5").style.fill = "#222222";
+
+            }
+            if (arg = 4) {
+                document.getElementById("map4of5").style.fill = "#222222";
+
+            }
+            if (arg = 5) {
+                document.getElementById("map5of5").style.fill = "#222222";
             }
         })
     }

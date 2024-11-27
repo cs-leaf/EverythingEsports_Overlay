@@ -304,10 +304,10 @@ timeoutB.addEventListener("change", () => {
     socket.emit("updateTimeoutsVAL", [ newTimeoutA, newTimeoutB ]);
 })
 
-const mapNum = document.querySelectorAll('input[name="val_mapPlayed"]'); // send which map is being played
+const VALmapNum = document.querySelectorAll('input[name="val_mapPlayed"]'); // send which map is being played
 // would like to update at some point to have it show that the map has *been* played, its score, and who picked the map
 
-mapNum.forEach(radioButton => { //update map value 1 thru 5
+VALmapNum.forEach(radioButton => { //update map value 1 thru 5
     radioButton.addEventListener('change', () => {
         const mapValue = document.querySelector('input[name="val_mapPlayed"]:checked').value;
         socket.emit("mapProgress", mapValue);
@@ -360,4 +360,81 @@ valBO5_map4.addEventListener("change", () => {
 valBO5_map5.addEventListener("change", () => {
     map5_out = BO5map5_inp.value;
     socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
+})
+
+// OVERWATCH SPECIFIC STUFF
+
+//Mode Select
+const modeID = document.querySelectorAll('input[name="mode"]')
+
+    modeID.forEach(radioButton => {
+        radioButton.addEventListener('change', () => {
+            const modeValue = document.querySelector('input[name="mode"]:checked').value;
+            console.log(modeValue);
+        })
+    })
+
+//Map Select
+let OWmap1_inp = document.querySelector("#OWmap1");
+let OWmap2_inp = document.querySelector("#OWmap2");
+let OWmap3_inp = document.querySelector("#OWmap3");
+let OWmap4_inp = document.querySelector("#OWmap4");
+let OWmap5_inp = document.querySelector("#OWmap5");
+
+let OWmap1winner_inp = document.querySelector("#OWmap1Winner");
+let OWmap2winner_inp = document.querySelector("#OWmap2Winner");
+let OWmap3winner_inp = document.querySelector("#OWmap3Winner");
+let OWmap4winner_inp = document.querySelector("#OWmap4Winner");
+let OWmap5winner_inp = document.querySelector("#OWmap5Winner");
+let winner1_out = "";
+let winner2_out = "";
+let winner3_out = "";
+let winner4_out = "";
+let winner5_out = "";
+
+OWmap1.addEventListener("change", () => {
+    map1_out = OWmap1_inp.value;
+})
+OWmap2.addEventListener("change", () => {
+    map2_out = OWmap2_inp.value;
+})
+OWmap3.addEventListener("change", () => {
+    map3_out = OWmap3_inp.value;
+})
+OWmap4.addEventListener("change", () => {
+    map4_out = OWmap4_inp.value;
+})
+OWmap5.addEventListener("change", () => {
+    map5_out = OWmap5_inp.value;
+})
+
+OWmap1Winner.addEventListener("change", () => {
+    winner1_out = OWmap1winner_inp.value;
+})
+OWmap2Winner.addEventListener("change", () => {
+    winner2_out = OWmap2winner_inp.value;
+})
+OWmap3Winner.addEventListener("change", () => {
+    winner3_out = OWmap3winner_inp.value;
+})
+OWmap4Winner.addEventListener("change", () => {
+    winner4_out = OWmap4winner_inp.value;
+})
+OWmap5Winner.addEventListener("change", () => {
+    winner5_out = OWmap5winner_inp.value;
+})
+
+function submitOWChanges(){
+    console.log(winner1_out, winner2_out, winner3_out, winner4_out, winner5_out);
+    socket.emit("mapWinners", [ winner1_out, winner2_out, winner3_out, winner4_out, winner5_out ]);
+}
+
+const OWmapNum = document.querySelectorAll('input[name="OW_mapPlayed"]');
+
+OWmapNum.forEach(radioButton => { //update map value 1 thru 5
+    radioButton.addEventListener('change', () => {
+        const mapValue = document.querySelector('input[name="OW_mapPlayed"]:checked').value;
+        console.log(mapValue);
+        socket.emit("mapProgress", mapValue);
+    })
 })

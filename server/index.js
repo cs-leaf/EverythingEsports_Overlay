@@ -37,7 +37,9 @@ let gameSelected = "none";
 let bestOf = 0; // 0 = none, 1 = BO3, 2 = B05
 let timeoutsLeft = [2,2]; // A = [0] and B = [1]
 let currentMapNum = 1;
-let mapPool = ["abyss", "abyss", "abyss", "abyss", "abyss",];
+let mapPool = ["abyss", "abyss", "abyss", "abyss", "abyss"];
+let mapWinners = ["#222222", "#222222", "#222222", "#222222", "#222222"];
+let owMode = "noMode";
 
 function bigBatchEmit() {
     io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors, tags ]); //sends updated to any clients rejoining a session
@@ -113,6 +115,7 @@ io.on('connection', socket => {
     socket.on("flipStatus", (arg) => {
         flipped = arg;
         console.log("Flipped status is... " + flipped);
+        io.emit("returnFlip", flipped);
         bigBatchEmit();
     })
 
@@ -159,6 +162,43 @@ io.on('connection', socket => {
     //
     socket.on("mapProgress", (arg) => {
         currentMapNum = arg;
+
+        if (currentMapNum == 1){
+            mapWinners[0] = "#999999"
+            mapWinners[1] = "#222222"
+            mapWinners[2] = "#222222"
+            mapWinners[3] = "#222222"
+            mapWinners[4] = "#222222"
+        }
+        if (currentMapNum == 2){
+            mapWinners[0] = "#222222"
+            mapWinners[1] = "#999999"
+            mapWinners[2] = "#222222"
+            mapWinners[3] = "#222222"
+            mapWinners[4] = "#222222"
+        }
+        if (currentMapNum == 3){
+            mapWinners[0] = "#222222"
+            mapWinners[1] = "#222222"
+            mapWinners[2] = "#999999"
+            mapWinners[3] = "#222222"
+            mapWinners[4] = "#222222"
+        }
+        if (currentMapNum == 4){
+            mapWinners[0] = "#222222"
+            mapWinners[1] = "#222222"
+            mapWinners[2] = "#222222"
+            mapWinners[3] = "#999999"
+            mapWinners[4] = "#222222"
+        }
+        if (currentMapNum == 5){
+            mapWinners[0] = "#222222"
+            mapWinners[1] = "#222222"
+            mapWinners[2] = "#222222"
+            mapWinners[3] = "#222222"
+            mapWinners[4] = "#999999"
+        }
+
         console.log("Map Number = " + currentMapNum)
         io.emit("mapReturn", currentMapNum);
     })
@@ -169,5 +209,60 @@ io.on('connection', socket => {
         timeoutsLeft[1] = args[1];
         console.log(timeoutsLeft);
         io.emit("returnTimeoutsVAL", timeoutsLeft);
+    })
+
+    //listen for mode updates Overwatch
+    socket.on("modeUpdate", (arg) => {
+        owMode = arg;
+        io.emit("modeReturn", owMode);
+    })
+
+    socket.on("mapWinners", (args) => {
+        if (args[0] == "A") {
+            mapWinners[0] = primaryColors[0];
+        }
+        else{
+            if (args[0] == "B") {
+                mapWinners[0] = primaryColors[1];
+            }
+        }
+
+        if (args[1] == "A") {
+            mapWinners[1] = primaryColors[0];
+        }
+        else{
+            if (args[1] == "B") {
+                mapWinners[1] = primaryColors[1];
+            }
+        }
+
+        if (args[2] == "A") {
+            mapWinners[2] = primaryColors[0];
+        }
+        else{
+            if (args[2] == "B") {
+                mapWinners[2] = primaryColors[1];
+            }
+        }
+
+        if (args[3] == "A") {
+            mapWinners[3] = primaryColors[0];
+        }
+        else{
+            if (args[3] == "B") {
+                mapWinners[3] = primaryColors[1];
+            }
+        }
+
+        if (args[4] == "A") {
+            mapWinners[4] = primaryColors[0];
+        }
+        else{
+            if (args[4] == "B") {
+                mapWinners[4] = primaryColors[1];
+            }
+        }
+        console.log(mapWinners);
+        io.emit("winnerReturn", mapWinners);
     })
 })

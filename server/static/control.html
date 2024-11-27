@@ -58,7 +58,7 @@
             <table>
                 <tr>
                     <td>
-                        <label for="nameB">Team Name:</label> <!-- get team B's name/tag -->
+                        <label for="nameB">Team Name/Tag:</label> <!-- get team B's name/tag -->
                         <input name="nameB" id="nameB" type="text" placeholder="CLOUD9">
                         <input name="tagB" id="tagB" type="text" placeholder="C9" maxlength="4">
                     </td>
@@ -289,7 +289,304 @@
     <div id="overwatchControl">
         <fieldset>
         <legend>OVERWATCH 2 CONTROLS</legend>
-                
+        <fieldset name="mode_sel" id="mode_sel">
+            <legend for="mode_sel"><strong>Current Mode</strong></legend>
+            
+            <input type="radio" name="mode" class="radioBtn" id="modeClash" value="CLASH">
+            <label for="modeClash">Clash</label>
+            
+            <input type="radio" name="mode" class="radioBtn" id="modeCtrl" value="CONTROL">
+            <label for="modeCtrl">Control</label>
+            
+            <input type="radio" name="mode" class="radioBtn" id="modeEscort" value="ESCORT">
+            <label for="modeEscort">Escort</label><br>
+            
+            <input type="radio" name="mode" class="radioBtn" id="modeFP" value="FLASHPOINT">
+            <label for="modeFP">Flashpoint</label>
+            
+            <input type="radio" name="mode" class="radioBtn" id="modeHyb" value="HYBRID">
+            <label for="modeHyb">Hybrid</label>
+            
+            <input type="radio" name="mode" class="radioBtn" id="modePush" value="PUSH">
+            <label for="modePush">Push</label><br>
+            
+            <input type="radio" name="mode" class="radioBtn" id="modeNull" value="noMode" checked>
+            <label for="modeNull">Hide Modes</label>
+          </fieldset>
+
+            <div id="mapsOW2">
+                <input type="radio" name="OW_mapPlayed" value="1">
+                <label for="OWmap1">Map 1:</label>
+                <select name="OWmap1" id="OWmap1">
+                    <option value="no_sel">N/A</option>
+                    <optgroup label="Control">
+                        <option value="ANTARCTIC">Antarctic Penninsula</option>
+                        <option value="BUSAN">Busan</option>
+                        <option value="ILIOS">Ilios</option>
+                        <option value="LIJIANG">Lijiang Tower</option>
+                        <option value="NEPAL">Nepal</option>
+                        <option value="OASIS">Oasis</option>
+                        <option value="SAMOA">Samoa</option>
+                    </optgroup>
+                    <optgroup label="Escort">
+                        <option value="CIRCUIT">Circuit Royal</option>
+                        <option value="DORADO">Dorado</option>
+                        <option value="HAVANA">Havana</option>
+                        <option value="JUNKERTOWN">Junkertown</option>
+                        <option value="RIALTO">Rialto</option>
+                        <option value="ROUTE 66">Route 66</option>
+                        <option value="SHAMBALI">Shambali Monastery</option>
+                        <option value="GIBRALTAR">Watchpoint: Gibraltar</option>
+                    </optgroup>
+                    <optgroup label="Flashpoint">
+                        <option value="NEW JUNK">New Junk City</option>
+                        <option value="SURAVASA">Suravasa</option>
+                    </optgroup>
+                    <optgroup label="Hybrid">
+                        <option value="BLIZZARD">Blizzard World</option>
+                        <option value="EICHENWALDE">Eichenwalde</option>
+                        <option value="HOLLYWOOD">Hollywood</option>
+                        <option value="KING'S ROW">King's Row</option>
+                        <option value="MIDTOWN">Midtown</option>
+                        <option value="NUMBANI">Numbani</option>
+                        <option value="PARAISO">Paraiso</option>
+                    </optgroup>
+                    <optgroup label="Push">
+                        <option value="COLOSSEO">Colosseo</option>
+                        <option value="ESPERANCA">Esperanca</option>
+                        <option value="NEW QUEEN">New Queen Street</option>
+                        <option value="RUNASAPI">Runasapi</option>
+                    </optgroup>
+                    <optgroup label="Clash">
+                        <option value="HANAOKA">Hanaoka</option>
+                        <option value="ANUBIS">Throne of Anubis</option>
+                    </optgroup>
+                </select>
+                <label for="OWmap1Winner">Who won?</label>
+                <select name="OWmap1Winner" id="OWmap1Winner">
+                    <option value="NONE">Not Concluded</option>
+                    <option value="A">Team A</option>
+                    <option value="B">Team B</option>
+                </select><br>
+
+                <input type="radio" name="OW_mapPlayed" value="2">
+                <label for="OWmap2">Map 2:</label>
+                <select name="OWmap2" id="OWmap2">
+                    <option value="no_sel">N/A</option>
+                    <optgroup label="Control">
+                        <option value="ANTARCTIC">Antarctic Penninsula</option>
+                        <option value="BUSAN">Busan</option>
+                        <option value="ILIOS">Ilios</option>
+                        <option value="LIJIANG">Lijiang Tower</option>
+                        <option value="NEPAL">Nepal</option>
+                        <option value="OASIS">Oasis</option>
+                        <option value="SAMOA">Samoa</option>
+                    </optgroup>
+                    <optgroup label="Escort">
+                        <option value="CIRCUIT">Circuit Royal</option>
+                        <option value="DORADO">Dorado</option>
+                        <option value="HAVANA">Havana</option>
+                        <option value="JUNKERTOWN">Junkertown</option>
+                        <option value="RIALTO">Rialto</option>
+                        <option value="ROUTE 66">Route 66</option>
+                        <option value="SHAMBALI">Shambali Monastery</option>
+                        <option value="GIBRALTAR">Watchpoint: Gibraltar</option>
+                    </optgroup>
+                    <optgroup label="Flashpoint">
+                        <option value="NEW JUNK">New Junk City</option>
+                        <option value="SURAVASA">Suravasa</option>
+                    </optgroup>
+                    <optgroup label="Hybrid">
+                        <option value="BLIZZARD">Blizzard World</option>
+                        <option value="EICHENWALDE">Eichenwalde</option>
+                        <option value="HOLLYWOOD">Hollywood</option>
+                        <option value="KING'S ROW">King's Row</option>
+                        <option value="MIDTOWN">Midtown</option>
+                        <option value="NUMBANI">Numbani</option>
+                        <option value="PARAISO">Paraiso</option>
+                    </optgroup>
+                    <optgroup label="Push">
+                        <option value="COLOSSEO">Colosseo</option>
+                        <option value="ESPERANCA">Esperanca</option>
+                        <option value="NEW QUEEN">New Queen Street</option>
+                        <option value="RUNASAPI">Runasapi</option>
+                    </optgroup>
+                    <optgroup label="Clash">
+                        <option value="HANAOKA">Hanaoka</option>
+                        <option value="ANUBIS">Throne of Anubis</option>
+                    </optgroup>
+                </select>
+                <label for="OWmap2Winner">Who won?</label>
+                <select name="OWmap2Winner" id="OWmap2Winner">
+                    <option value="NONE">Not Concluded</option>
+                    <option value="A">Team A</option>
+                    <option value="B">Team B</option>
+                </select><br>
+
+                <input type="radio" name="OW_mapPlayed" value="3">
+                <label for="OWmap3">Map 3:</label>
+                <select name="OWmap3" id="OWmap3">
+                    <option value="no_sel">N/A</option>
+                    <optgroup label="Control">
+                        <option value="ANTARCTIC">Antarctic Penninsula</option>
+                        <option value="BUSAN">Busan</option>
+                        <option value="ILIOS">Ilios</option>
+                        <option value="LIJIANG">Lijiang Tower</option>
+                        <option value="NEPAL">Nepal</option>
+                        <option value="OASIS">Oasis</option>
+                        <option value="SAMOA">Samoa</option>
+                    </optgroup>
+                    <optgroup label="Escort">
+                        <option value="CIRCUIT">Circuit Royal</option>
+                        <option value="DORADO">Dorado</option>
+                        <option value="HAVANA">Havana</option>
+                        <option value="JUNKERTOWN">Junkertown</option>
+                        <option value="RIALTO">Rialto</option>
+                        <option value="ROUTE 66">Route 66</option>
+                        <option value="SHAMBALI">Shambali Monastery</option>
+                        <option value="GIBRALTAR">Watchpoint: Gibraltar</option>
+                    </optgroup>
+                    <optgroup label="Flashpoint">
+                        <option value="NEW JUNK">New Junk City</option>
+                        <option value="SURAVASA">Suravasa</option>
+                    </optgroup>
+                    <optgroup label="Hybrid">
+                        <option value="BLIZZARD">Blizzard World</option>
+                        <option value="EICHENWALDE">Eichenwalde</option>
+                        <option value="HOLLYWOOD">Hollywood</option>
+                        <option value="KING'S ROW">King's Row</option>
+                        <option value="MIDTOWN">Midtown</option>
+                        <option value="NUMBANI">Numbani</option>
+                        <option value="PARAISO">Paraiso</option>
+                    </optgroup>
+                    <optgroup label="Push">
+                        <option value="COLOSSEO">Colosseo</option>
+                        <option value="ESPERANCA">Esperanca</option>
+                        <option value="NEW QUEEN">New Queen Street</option>
+                        <option value="RUNASAPI">Runasapi</option>
+                    </optgroup>
+                    <optgroup label="Clash">
+                        <option value="HANAOKA">Hanaoka</option>
+                        <option value="ANUBIS">Throne of Anubis</option>
+                    </optgroup>
+                </select>
+                <label for="OWmap3Winner">Who won?</label>
+                <select name="OWmap3Winner" id="OWmap3Winner">
+                    <option value="NONE">Not Concluded</option>
+                    <option value="A">Team A</option>
+                    <option value="B">Team B</option>
+                </select><br>
+
+                <input type="radio" name="OW_mapPlayed" value="4">
+                <label for="OWmap4">Map 4:</label>
+                <select name="OWmap4" id="OWmap4">
+                    <option value="no_sel">N/A</option>
+                    <optgroup label="Control">
+                        <option value="ANTARCTIC">Antarctic Penninsula</option>
+                        <option value="BUSAN">Busan</option>
+                        <option value="ILIOS">Ilios</option>
+                        <option value="LIJIANG">Lijiang Tower</option>
+                        <option value="NEPAL">Nepal</option>
+                        <option value="OASIS">Oasis</option>
+                        <option value="SAMOA">Samoa</option>
+                    </optgroup>
+                    <optgroup label="Escort">
+                        <option value="CIRCUIT">Circuit Royal</option>
+                        <option value="DORADO">Dorado</option>
+                        <option value="HAVANA">Havana</option>
+                        <option value="JUNKERTOWN">Junkertown</option>
+                        <option value="RIALTO">Rialto</option>
+                        <option value="ROUTE 66">Route 66</option>
+                        <option value="SHAMBALI">Shambali Monastery</option>
+                        <option value="GIBRALTAR">Watchpoint: Gibraltar</option>
+                    </optgroup>
+                    <optgroup label="Flashpoint">
+                        <option value="NEW JUNK">New Junk City</option>
+                        <option value="SURAVASA">Suravasa</option>
+                    </optgroup>
+                    <optgroup label="Hybrid">
+                        <option value="BLIZZARD">Blizzard World</option>
+                        <option value="EICHENWALDE">Eichenwalde</option>
+                        <option value="HOLLYWOOD">Hollywood</option>
+                        <option value="KING'S ROW">King's Row</option>
+                        <option value="MIDTOWN">Midtown</option>
+                        <option value="NUMBANI">Numbani</option>
+                        <option value="PARAISO">Paraiso</option>
+                    </optgroup>
+                    <optgroup label="Push">
+                        <option value="COLOSSEO">Colosseo</option>
+                        <option value="ESPERANCA">Esperanca</option>
+                        <option value="NEW QUEEN">New Queen Street</option>
+                        <option value="RUNASAPI">Runasapi</option>
+                    </optgroup>
+                    <optgroup label="Clash">
+                        <option value="HANAOKA">Hanaoka</option>
+                        <option value="ANUBIS">Throne of Anubis</option>
+                    </optgroup>
+                </select>
+                <label for="OWmap4Winner">Who won?</label>
+                <select name="OWmap4Winner" id="OWmap4Winner">
+                    <option value="NONE">Not Concluded</option>
+                    <option value="A">Team A</option>
+                    <option value="B">Team B</option>
+                </select><br>
+
+                <input type="radio" name="OW_mapPlayed" value="5">
+                <label for="OWmap5">Map 5:</label>
+                <select name="OWmap5" id="OWmap5">
+                    <option value="no_sel">N/A</option>
+                    <optgroup label="Control">
+                        <option value="ANTARCTIC">Antarctic Penninsula</option>
+                        <option value="BUSAN">Busan</option>
+                        <option value="ILIOS">Ilios</option>
+                        <option value="LIJIANG">Lijiang Tower</option>
+                        <option value="NEPAL">Nepal</option>
+                        <option value="OASIS">Oasis</option>
+                        <option value="SAMOA">Samoa</option>
+                    </optgroup>
+                    <optgroup label="Escort">
+                        <option value="CIRCUIT">Circuit Royal</option>
+                        <option value="DORADO">Dorado</option>
+                        <option value="HAVANA">Havana</option>
+                        <option value="JUNKERTOWN">Junkertown</option>
+                        <option value="RIALTO">Rialto</option>
+                        <option value="ROUTE 66">Route 66</option>
+                        <option value="SHAMBALI">Shambali Monastery</option>
+                        <option value="GIBRALTAR">Watchpoint: Gibraltar</option>
+                    </optgroup>
+                    <optgroup label="Flashpoint">
+                        <option value="NEW JUNK">New Junk City</option>
+                        <option value="SURAVASA">Suravasa</option>
+                    </optgroup>
+                    <optgroup label="Hybrid">
+                        <option value="BLIZZARD">Blizzard World</option>
+                        <option value="EICHENWALDE">Eichenwalde</option>
+                        <option value="HOLLYWOOD">Hollywood</option>
+                        <option value="KING'S ROW">King's Row</option>
+                        <option value="MIDTOWN">Midtown</option>
+                        <option value="NUMBANI">Numbani</option>
+                        <option value="PARAISO">Paraiso</option>
+                    </optgroup>
+                    <optgroup label="Push">
+                        <option value="COLOSSEO">Colosseo</option>
+                        <option value="ESPERANCA">Esperanca</option>
+                        <option value="NEW QUEEN">New Queen Street</option>
+                        <option value="RUNASAPI">Runasapi</option>
+                    </optgroup>
+                    <optgroup label="Clash">
+                        <option value="HANAOKA">Hanaoka</option>
+                        <option value="ANUBIS">Throne of Anubis</option>
+                    </optgroup>
+                </select>
+                <label for="OWmap5Winner">Who won?</label>
+                <select name="OWmap5Winner" id="OWmap5Winner">
+                    <option value="NONE">Not Concluded</option>
+                    <option value="A">Team A</option>
+                    <option value="B">Team B</option>
+                </select>
+            </div>
+
+            <button class="scoreBtn" onclick="submitOWChanges()">Submit Map Changes</button>
         </fieldset>
     </div>
 </body>

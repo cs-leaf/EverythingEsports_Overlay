@@ -1,15 +1,56 @@
-  @import url("https://use.typekit.net/sso3kkk.css");
+@import url("https://use.typekit.net/sso3kkk.css");
+*{
+    font-family: "address-sans-pro", sans-serif;
+}
 
+#mapNames{
+    position: absolute;
+    z-index: 5;
+    top: -18px;
+    left: 20px;
+
+    display: inline-flex;
+    color: white;
+}
+.mapDisplay{
+    width: 103px;
+    margin-right: 22px;
+    text-align: center;
+}
+
+#BO5mapDisplay{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#gamemodebox{
+    width: 375px;
+    position: absolute;
+    z-index: 2;
+    top:15px;
+    left: 40.25%;
+    display: block;
+}
+#modeName{
+    fill: white;
+    font-size: 24px;
+    fill-opacity: 100%;
+    text-anchor: middle;
+}
 
 #lBody, #rBody{
     fill: coral;
 }
 
 #leftScore{
+    margin-top: 35px;
+    margin-left: 42px;
     display: inline-flex;
     float: left;
 }
 #rightScore{
+    margin-top: 35px;
+    margin-right: 42px;
     display: inline-flex;
     float: right;
 }
@@ -33,4 +74,12 @@ text{
 }
 .nameText, .recordText{
     font-size: 28px;
+}
+
+#modeBox{
+    fill: url("#grad1")
+}
+
+.mapFills{
+    fill: #999999;
 }
