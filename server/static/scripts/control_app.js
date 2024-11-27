@@ -44,10 +44,6 @@ socket.on("returnInfo", (args) => {
     document.getElementById("scolA").placeholder = args[3][0];
     document.getElementById("scolB").placeholder = args[3][1];
 });
-socket.on("returnRecords", (args) => {
-    document.getElementById("winsA").placeholder = args[0][0];
-    document.getElementById("winsB").placeholder = args[0][1];
-})
 
 //team info stuff (REWORK FOR SUBMIT BUTTON)
 let nameA_inp = document.getElementById("nameA"); //define the A inputs
@@ -403,10 +399,11 @@ function submitValChanges() {
 
 //Mode Select
 const modeID = document.querySelectorAll('input[name="mode"]')
+let modeValue = "noMode"
 
     modeID.forEach(radioButton => {
         radioButton.addEventListener('change', () => {
-            const modeValue = document.querySelector('input[name="mode"]:checked').value;
+            modeValue = document.querySelector('input[name="mode"]:checked').value;
             console.log(modeValue);
         })
     })
@@ -463,6 +460,7 @@ OWmap5Winner.addEventListener("change", () => {
 
 function submitOWChanges(){
     console.log(OWwinner1_out, OWwinner2_out, OWwinner3_out, OWwinner4_out, OWwinner5_out);
+    socket.emit("modeUpdate", modeValue);
     socket.emit("mapSelection", [ map1_out, map2_out, map3_out, map4_out, map5_out ]);
     socket.emit("mapWinners", [ OWwinner1_out, OWwinner2_out, OWwinner3_out, OWwinner4_out, OWwinner5_out ]);
 }
