@@ -116,7 +116,11 @@ io.on('connection', socket => {
         flipped = arg;
         console.log("Flipped status is... " + flipped);
         io.emit("returnFlip", flipped);
-        bigBatchEmit();
+        io.emit("returnInfo", [ names, logos, primaryColors, secondaryColors, tags ]); //sends updated to any clients rejoining a session
+        io.emit("returnRecords", [rWins, rLosses]);
+        io.emit("returnScores", scores);
+        io.emit("activeGame", gameSelected);
+        io.emit("returnTimeoutsVAL", timeoutsLeft);
     })
 
     //listen for game selection
